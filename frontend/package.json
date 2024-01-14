@@ -13,6 +13,7 @@
     "@react-three/fiber": "^8.14.1",
     "@react-three/postprocessing": "^2.15.10",
     "@react-three/rapier": "^1.1.2",
+    "@thirdweb-dev/chains": "^0.1.63",
     "@thirdweb-dev/react": "^4.1.10",
     "@thirdweb-dev/sdk": "^4.0.17",
     "@types/node": "20.6.2",
