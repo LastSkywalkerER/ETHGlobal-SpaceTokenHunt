@@ -11,6 +11,10 @@ A higher Health Factor means a safer position, reducing the likelihood of the po
 where the user's collateral might be sold off to repay the borrowed assets. This metric helps users manage their borrowing and lending activities, 
 ensuring they maintain a healthy balance between the assets borrowed and the collateral provided.
 
+**Liquidation threshold** - this is the threshold at which a loan position will be considered undercollateralized and subject to liquidation for each collateral. For example, ETH collateral has a liquidation threshold of 82.5%, meaning that the position will be liquidated when the value of the debt is 82.5% of the value of the collateral.
+
+**Liquidation penalty** - when liquidation takes place, liquidators recover up to 50% of the outstanding loan amount on behalf of the borrower. In return, they can buy the collateral at a discount and keep the difference (the liquidation penalty) as a bonus. For our ETH example, this is 5%.
+
 # Problems
 
 One of the team members, who is also an educator in the field of cryptocurrencies and DeFi, encountered a significant challenge while teaching these complex subjects. During their experience of instructing over 3000 students, they consistently faced the difficulty of effectively conveying intricate DeFi concepts such as collateralization, loan-to-value (LTV) ratios, and the Health Factor. Traditional educational methods often proved insufficient in fully capturing the dynamic nature of DeFi markets and the practical implications of these concepts.
