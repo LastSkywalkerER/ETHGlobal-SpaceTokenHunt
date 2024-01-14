@@ -24,7 +24,6 @@ export interface ExperienceProps {
 
 export const Experience: FC<ExperienceProps> = ({ downgradedPerformance }) => {
   const { ethers, init, onShoot, position } = useGame();
-  console.log("🚀 ~ file: Experience.tsx:27 ~ ethers:", ethers);
   const { shipSpecs, loadShipSpecs } = useShip();
 
   const signer = useSigner();
