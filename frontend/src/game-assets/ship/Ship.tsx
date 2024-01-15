@@ -2,15 +2,15 @@
 
 import { GroupProps, useFrame } from "@react-three/fiber";
 import { CameraControls, useKeyboardControls } from "@react-three/drei";
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef } from "react";
 import * as THREE from "three";
 import { RapierRigidBody, RigidBody, quat, vec3 } from "@react-three/rapier";
-import { CustomFbxLoader, CustomObjectLoader } from "../customObject";
-import { shipAssets, shipAssets2 } from "./asssets";
-import { Controls } from "@/constants";
+import { CustomFbxLoader } from "../customObject";
+import {  shipAssets2 } from "./asssets";
 import { Group } from "three";
 import { ShipInfo } from "./ShipInfo";
 import { BulletData, ShipSpecs } from "../../types/game.types";
+import { Controls } from "../../shared/constants";
 
 const direction = new THREE.Vector3();
 const rotation = new THREE.Vector3();

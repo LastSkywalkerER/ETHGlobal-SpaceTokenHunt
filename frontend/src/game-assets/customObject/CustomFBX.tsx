@@ -1,6 +1,6 @@
 "use client";
 
-import { PrimitiveProps, useLoader } from "@react-three/fiber";
+import { PrimitiveProps } from "@react-three/fiber";
 import { useFBX, useTexture } from "@react-three/drei";
 import { FC, useLayoutEffect } from "react";
 import * as THREE from "three";

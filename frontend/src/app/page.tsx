@@ -14,10 +14,10 @@ import { Suspense, useMemo, useState } from "react";
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import { ThirdwebProvider, embeddedWallet } from "@thirdweb-dev/react";
 import { ArbitrumSepolia } from "@thirdweb-dev/chains";
-import { Controls } from "@/shared/constants";
-import { Gui } from "@/gui";
-import { config } from "@/shared/config/environment.config";
-import { Experience } from "@/game-assets/experience";
+import { Controls } from "../shared/constants";
+import { Gui } from "../gui";
+import { config } from "../shared/config/environment.config";
+import { Experience } from "../game-assets/experience";
 
 export default function Home() {
   const [downgradedPerformance, setDowngradedPerformance] = useState(false);

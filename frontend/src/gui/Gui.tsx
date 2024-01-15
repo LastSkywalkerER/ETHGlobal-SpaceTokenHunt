@@ -2,7 +2,7 @@ import { KeyboardControlsEntry } from "@react-three/drei";
 import { FC, useEffect, useRef } from "react";
 import cx from "classnames";
 import { ConnectWallet, useSigner } from "@thirdweb-dev/react";
-import { useGame } from "@/shared/services/game.service";
+import { useGame } from "../shared/services/game.service";
 
 interface GuiProps {
   map: KeyboardControlsEntry<string>[];
