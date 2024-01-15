@@ -24,3 +24,25 @@ This problem is further compounded by the abstract and often complex nature of D
 # Proposed solution
 
 Recognizing these educational challenges, the team member was inspired to create a solution that could bridge this gap. The game concept was thus born out of a need for a more engaging, intuitive, and risk-free way to educate users about DeFi. By gamifying the learning experience, the game aims to make DeFi concepts more accessible and relatable, offering a hands-on approach to understanding and navigating the DeFi ecosystem. This initiative reflects a commitment to improving financial literacy in the DeFi space, empowering users to make informed decisions in their DeFi engagements.
+
+# Gameplay
+
+The proposed game begins with the player selecting an initial asset to deposit as their starting balance. This balance, represented in a chosen token, sets the limit for their in-game wallet expenditure. However, it's crucial to note that these assets are not immediately provided as collateral; they merely constitute the player's balance.
+
+As the player navigates the game, they encounter various "bubbles" representing different tockens, they can be providing as a collateral or taking as a loans. 
+Players use two types of laser shots to interact with these bubbles: one color for collateralizing a token (opening a deposit) and another for borrowing the token.
+
+A key aspect of the gameplay involves matching the asset type: if the player attempts to provide an asset different from their initial deposit, an error message indicates that they cannot use this asset for collateral. Similarly, attempting to take a loan without first providing collateral also results in an error.
+
+The correct initial action for the player is to find and interact with a bubble that matches the asset they initially deposited. Upon successfully shooting this bubble, the player's balance is provided as collateral to a smart contract, activating key parameters like the Health Factor and net APY, which are displayed above the player's spaceship.
+
+Once the player has provided collateral, they can start taking loans by shooting at bubbles representing different loanable assets. Since they have collateral in place, they can now borrow any asset. After acquiring a loaned asset, the player can opt to provide it back as collateral, enabling a strategy to build a "liquidity pyramid."
+
+To add diversity and strategic depth to the gameplay, bubbles could vary not only by asset types but also by the percentages of the assets they represent, like offering or borrowing 10%, 5%, or 15% of an initial deposit. This feature allows players to fine-tune their strategies and portfolio management.
+
+The game's core challenge is maintaining a healthy Health Factor, which decreases with each borrowed asset. If the Health Factor approaches or falls below 1, the game ends, and the player's spaceship is destroyed. The game concludes with a summary of the player's impact on the total value locked (TVL) in DeFi, illustrating how they increased their portfolio through various borrowing and collateral actions, thereby contributing to the DeFi liquidity pyramid.
+
+The game could feature multiple modes, including an educational mode, and a real mode, where each action might constitute an actual transaction in the DeFi ecosystem. This diversity in gameplay modes offers varying levels of engagement and learning opportunities for players with different levels of familiarity with DeFi concepts.
+
+Overall, this game aims to educate players about DeFi strategies and risk management in an interactive and engaging environment, using gamification to demystify complex financial concepts and encourage prudent financial behaviour in the DeFi space.
+
