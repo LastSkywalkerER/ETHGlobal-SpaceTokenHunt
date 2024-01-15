@@ -1,17 +1,15 @@
 import { Environment } from "@react-three/drei";
 
 import { FC, useEffect, useState } from "react";
-import { Bullet, BulletProps } from "../Bullet";
+import { Bullet } from "../Bullet";
 import { BulletHit } from "../BulletHit";
 import { Ship } from "../ship";
 import { Asteroid } from "../asteroid";
-import { asteroids } from "@/constants";
 import { Vector3 } from "three";
-import { useGame } from "@/services/game.service";
-import { Signer } from "ethers";
-import { BulletData } from "@/types/game.types";
+import { BulletData } from "../../types/game.types";
 import { useSigner } from "@thirdweb-dev/react";
-import { useShip } from "@/services/ship.service";
+import { useGame } from "@/shared/services/game.service";
+import { useShip } from "@/shared/services/ship.service";
 
 interface Hit {
   id: number;

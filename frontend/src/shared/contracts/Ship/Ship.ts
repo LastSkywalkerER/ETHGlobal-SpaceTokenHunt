@@ -1,9 +1,9 @@
-import { shipAddress } from "@/constants/constants";
+import { shipAddress } from "../../constants/constants";
 import { GameContract } from "../GameContract";
 import { Ship as IShip } from "./Ship.types";
 import abi from "./abi.json";
-import { ShipSpecs } from "@/types/game.types";
-import { nk } from "@/helpers/ethSpecsParse";
+import { ShipSpecs } from "../../../types/game.types";
+import { nk } from "../../helpers/ethSpecsParse";
 import { Vector3 } from "three";
 
 export class Ship extends GameContract<IShip> {

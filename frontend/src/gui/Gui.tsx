@@ -1,9 +1,8 @@
 import { KeyboardControlsEntry } from "@react-three/drei";
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef } from "react";
 import cx from "classnames";
-import { useGame } from "@/services/game.service";
-import { utils } from "ethers";
-import { ConnectWallet, Web3Button, useSigner } from "@thirdweb-dev/react";
+import { ConnectWallet, useSigner } from "@thirdweb-dev/react";
+import { useGame } from "@/shared/services/game.service";
 
 interface GuiProps {
   map: KeyboardControlsEntry<string>[];
@@ -32,26 +31,28 @@ export const Gui: FC<GuiProps> = ({ map, className, isPlaying, setIsPlaying }) =
   };
 
   return (
-    <div className={cx("w-full h-full text-white", className)}>
-      <audio
-        ref={audio}
-        src="audios/ambient.mp3"
-        autoPlay
-        onEnded={(event) => event.currentTarget.play()}
-      />
+    <div className={cx("w-full h-full text-white flex", className)}>
+      <div className={"w-auto h-min bg-gray-800 bg-opacity-75 rounded-lg p-4 border border-gray-600"}>
+        <audio
+          ref={audio}
+          src="audios/ambient.mp3"
+          autoPlay
+          onEnded={(event) => event.currentTarget.play()}
+        />
 
-      <h1>Controls</h1>
-      {map.map(({ name, keys }) => (
-        <p key={name}>{`${name} - ${keys.map((key) => `${key} `)}`}</p>
-      ))}
-      {signer ? (
-        <>
-          <h1>Player</h1>
-          {isPlaying && <ConnectWallet />}
-          <p>{`Bullets - ${bullets}`}</p>
-          <p>{`Wrecked Ethers - ${wreckedEthers}`}</p>
-        </>
-      ) : null}
+        <h1>Controls</h1>
+        {map.map(({ name, keys }) => (
+          <p key={name}>{`${name} - ${keys.map((key) => `${key} `)}`}</p>
+        ))}
+        {signer ? (
+          <>
+            <h1>Player</h1>
+            {isPlaying && <ConnectWallet />}
+            <p>{`Bullets - ${bullets}`}</p>
+            <p>{`Wrecked Ethers - ${wreckedEthers}`}</p>
+          </>
+        ) : null}
+      </div>
 
       {!isPlaying && (
         <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col gap-12">

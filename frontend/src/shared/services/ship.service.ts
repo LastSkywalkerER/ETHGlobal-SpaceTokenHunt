@@ -1,6 +1,6 @@
 import { create } from "zustand";
-import { ShipSpecs } from "@/types/game.types";
-import { Ship as ShipContract } from "@/contracts/Ship";
+import { ShipSpecs } from "../../types/game.types";
+import { Ship as ShipContract } from "../contracts/Ship";
 
 type Game = {
   shipSpecs?: ShipSpecs;

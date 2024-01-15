@@ -1,4 +1,4 @@
-import { config } from "@/config/environment.config";
+import { config } from "../config/environment.config";
 
 export const rpcUrl = `https://arbitrum-sepolia.infura.io/v3/${config.INFURA_API_KEY}`;
 export const gameLogicAddress = "0x98c86DFB5f548b41513ac65243592A7A6B554940";

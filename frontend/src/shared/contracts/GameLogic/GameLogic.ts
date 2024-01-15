@@ -1,11 +1,11 @@
 import { Signer, utils } from "ethers";
-import { gameLogicAddress } from "@/constants/constants";
+import { gameLogicAddress } from "../../constants/constants";
 import abi from "./abi.json";
 import { Vector3 } from "three";
 import { type GameLogic as IGameLogic } from "./GameLogic.types";
-import { BulletData } from "@/types/game.types";
+import { BulletData } from "../../../types/game.types";
 import { GameContract } from "../GameContract";
-import { n, r, rk, nk } from "@/helpers/ethSpecsParse";
+import { n, r, rk, nk } from "../../helpers/ethSpecsParse";
 
 export class GameLogic extends GameContract<IGameLogic> {
   public bulletPrice = 0.0001;

@@ -1,4 +1,4 @@
-import { rpcUrl } from "@/constants/constants";
+import { rpcUrl } from "../constants/constants";
 import { BaseContract, Contract, ContractInterface, providers } from "ethers/lib/ethers";
 
 export abstract class GameContract<T extends BaseContract> {

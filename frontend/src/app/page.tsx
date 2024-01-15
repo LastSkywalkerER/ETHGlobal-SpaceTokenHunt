@@ -10,14 +10,14 @@ import {
   SoftShadows,
 } from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
-import { Suspense, useEffect, useMemo, useState } from "react";
-import { Controls } from "@/constants";
+import { Suspense, useMemo, useState } from "react";
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
-import { Experience } from "@/components/experience";
-import { Gui } from "@/components/gui";
 import { ThirdwebProvider, embeddedWallet } from "@thirdweb-dev/react";
-import { config } from "@/config/environment.config";
 import { ArbitrumSepolia } from "@thirdweb-dev/chains";
+import { Controls } from "@/shared/constants";
+import { Gui } from "@/gui";
+import { config } from "@/shared/config/environment.config";
+import { Experience } from "@/game-assets/experience";
 
 export default function Home() {
   const [downgradedPerformance, setDowngradedPerformance] = useState(false);

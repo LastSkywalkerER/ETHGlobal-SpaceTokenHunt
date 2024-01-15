@@ -10,7 +10,7 @@ import { shipAssets, shipAssets2 } from "./asssets";
 import { Controls } from "@/constants";
 import { Group } from "three";
 import { ShipInfo } from "./ShipInfo";
-import { BulletData, ShipSpecs } from "@/types/game.types";
+import { BulletData, ShipSpecs } from "../../types/game.types";
 
 const direction = new THREE.Vector3();
 const rotation = new THREE.Vector3();

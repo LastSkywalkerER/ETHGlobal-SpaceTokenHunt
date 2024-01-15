@@ -1,9 +1,9 @@
 import { create } from "zustand";
 import { Vector3 } from "three";
-import { asteroids } from "@/constants";
+import { asteroids } from "../constants";
 import { Signer } from "ethers";
-import { BulletData } from "@/types/game.types";
-import { GameLogic } from "@/contracts/GameLogic";
+import { BulletData } from "../../types/game.types";
+import { GameLogic } from "../contracts/GameLogic";
 
 type Game = {
   position: Vector3;
