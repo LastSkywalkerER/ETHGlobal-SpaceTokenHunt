@@ -29,7 +29,21 @@ export class Ship extends GameContract<IShip> {
     //   }
     // });
 
-    const data = await this.contract.shipSpecsByTokenId(tokenId);
+    // const data = await this.contract.shipSpecsByTokenId(tokenId);
+
+    const data = {
+      MOVE_SPEED: 1000,
+      MOVE_ANGLE_SPEED: 5000,
+      SHIP_MASS: 1000,
+      LINEAR_DAMPING: 50,
+      ANGULAR_DAMPING: 150,
+      FIRE_RATE: 38000,
+      WEAPON_OFFSET: {
+        x: 0,
+        y: 100,
+        z: -300,
+      },
+    };
 
     return {
       ANGULAR_DAMPING: nk(data.ANGULAR_DAMPING),

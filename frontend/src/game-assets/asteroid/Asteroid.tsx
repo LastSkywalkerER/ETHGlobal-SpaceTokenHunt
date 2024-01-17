@@ -1,17 +1,10 @@
-import {
-  CollisionPayload,
-  RapierRigidBody,
-  RigidBody,
-  RigidBodyProps,
-  vec3,
-} from "@react-three/rapier";
+import { CollisionPayload, RapierRigidBody, RigidBody, RigidBodyProps, vec3 } from "@react-three/rapier";
 import { FC, useRef, useState } from "react";
 import { BulletUserData } from "../Bullet";
-import { CustomFbxLoader } from "../customObject";
-import { asteroidAssets } from "./asssets";
 import { Vector3 } from "three";
 import { useSigner } from "@thirdweb-dev/react";
-import { useGame } from "@/shared/services/game.service";
+import { useGame } from "../../shared/services/game.service";
+import { Coin } from "../coin";
 
 export interface AsteroidProps {
   onKilled?: () => void;
@@ -70,7 +63,7 @@ export const Asteroid: FC<RigidBodyProps & AsteroidProps> = ({ onKilled, id, ...
       onIntersectionEnter={intersectionHandler}
       colliders={"hull"}
     >
-      <CustomFbxLoader {...asteroidAssets} />
+      <Coin />
     </RigidBody>
   );
 };
