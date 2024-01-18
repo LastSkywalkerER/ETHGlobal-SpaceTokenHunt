@@ -9,3 +9,13 @@ export enum BulletColors {
   Green = "#86ff00",
   Blue = "#00ffb5",
 }
+
+export enum BulletActions {
+  Borrow = "Borrow",
+  Repay = "Repay"
+}
+
+export const colorToAction: Record<BulletColors, BulletActions> = {
+  "#00ffb5": BulletActions.Borrow,
+  "#86ff00": BulletActions.Repay,
+};

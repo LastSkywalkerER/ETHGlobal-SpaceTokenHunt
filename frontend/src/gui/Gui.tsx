@@ -1,3 +1,5 @@
+"useClient";
+
 import { KeyboardControlsEntry } from "@react-three/drei";
 import { FC, HTMLAttributes, useEffect, useRef } from "react";
 import cx from "classnames";
@@ -6,13 +8,11 @@ import { useGame } from "../shared/services/game.service";
 import { ConnectKitButton } from "connectkit";
 import { useAccount, useSendTransaction } from "wagmi";
 import { parseEther } from "viem";
-import { BulletColors } from "../shared/constants/constants";
+import { BulletColors, colorToAction } from "../shared/constants/constants";
 
 interface GuiProps {
   map: KeyboardControlsEntry<string>[];
   className?: string;
-  isPlaying: boolean;
-  setIsPlaying: (state: boolean) => void;
 }
 
 const GuiCard: FC<HTMLAttributes<HTMLDivElement>> = ({ children, className, ...props }) => {
@@ -28,15 +28,23 @@ const GuiCard: FC<HTMLAttributes<HTMLDivElement>> = ({ children, className, ...p
 
 const minBalanceForGame = 0.1;
 
-export const Gui: FC<GuiProps> = ({ map, className, isPlaying, setIsPlaying }) => {
+export const Gui: FC<GuiProps> = ({ map, className }) => {
   const audio = useRef<HTMLAudioElement | null>(null);
   const signer = useSigner();
   const { data } = useBalance();
   const { sendTransaction } = useSendTransaction();
   const { isConnected } = useAccount();
-  const { setBulletColor, bulletColor } = useGame();
 
-  const { bullets, buyBullets: buyGameBullets, wreckedEthers, loadGameData } = useGame();
+  const {
+    setBulletColor,
+    bulletColor,
+    isPlaying,
+    setIsPlaying,
+    loadGameData,
+    borrowRepayPercentage,
+    incBRP,
+    decBRP,
+  } = useGame();
 
   useEffect(() => {
     signer && loadGameData(signer);
@@ -53,10 +61,6 @@ export const Gui: FC<GuiProps> = ({ map, className, isPlaying, setIsPlaying }) =
     setIsPlaying(false);
   };
 
-  const buyBullets = async () => {
-    signer && (await buyGameBullets(signer, 100));
-  };
-
   const topUp = async () => {
     sendTransaction({
       to: await signer?.getAddress() || "",
@@ -71,8 +75,8 @@ export const Gui: FC<GuiProps> = ({ map, className, isPlaying, setIsPlaying }) =
           <div className={"flex gap-12"}>
             <ConnectWallet />
             <GuiCard>
-              <p>{`Bullets - ${bullets}`}</p>
-              <p>{`Wrecked Ethers - ${wreckedEthers}`}</p>
+              <p>{`Current action - ${colorToAction[bulletColor]}`}</p>
+              <p>{`Action percentage - ${borrowRepayPercentage}%`}</p>
             </GuiCard>
           </div>}
         {isPlaying && (
@@ -108,12 +112,6 @@ export const Gui: FC<GuiProps> = ({ map, className, isPlaying, setIsPlaying }) =
                     >
                       Play
                     </button>
-                    <button
-                      className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
-                      onClick={buyBullets}
-                    >
-                      Buy Bullets
-                    </button>
                   </> :
                   isConnected ?
                     <button
@@ -133,12 +131,30 @@ export const Gui: FC<GuiProps> = ({ map, className, isPlaying, setIsPlaying }) =
         </div>
       )}
 
-      {isPlaying && <div className={"fixed bottom-20 left-1/2 -translate-x-1/2 flex"}>
-        {[BulletColors.Green, BulletColors.Blue].map((color, index) => (
-          <GuiCard onClick={() => setBulletColor(color)} key={color} className={"flex flex-col gap-2 items-center"}>
-            <div className={"w-10 h-10"} style={{ backgroundColor: color }} />
-            {bulletColor === color ? <span className={"font-bold"}>{index}</span> : <span>{index}</span>}
-          </GuiCard>))}
+      {isPlaying && <div className={"fixed bottom-20 left-1/2 -translate-x-1/2"}>
+        <div className={"relative flex"}>
+          <div className={"absolute top-1/2 right-0 translate-x-full -translate-y-1/2 flex flex-col items-center"}>
+            <button
+              className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+              onClick={incBRP}
+            >
+              +
+            </button>
+            <span>{borrowRepayPercentage}%</span>
+            <button
+              className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+              onClick={decBRP}
+            >
+              -
+            </button>
+          </div>
+          {[BulletColors.Green, BulletColors.Blue].map((color, index) => (
+            <GuiCard onClick={() => setBulletColor(color)} key={color}
+                     className={"cursor-pointer flex flex-col gap-2 items-center"}>
+              <div className={"w-10 h-10"} style={{ backgroundColor: color }} />
+              {bulletColor === color ? <span className={"font-bold"}>{index}</span> : <span>{index}</span>}
+            </GuiCard>))}
+        </div>
       </div>}
     </div>
   );

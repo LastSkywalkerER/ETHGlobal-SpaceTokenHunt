@@ -7,9 +7,11 @@ import { GameLogic } from "../contracts/GameLogic";
 import { BulletColors } from "../constants/constants";
 
 type Game = {
+  isPlaying: boolean;
   position: Vector3;
   bullets: number;
   bulletColor: BulletColors;
+  borrowRepayPercentage: number;
   usedBullets: Record<string, BulletData>;
   ethers: { id: number; position: Vector3 }[];
   wreckedEthers: number;
@@ -25,17 +27,31 @@ type Game = {
   ) => Promise<void>;
   loadGameData: (signer: Signer) => Promise<void>;
   setBulletColor: (color: BulletColors) => void;
+
+  incBRP: () => void;
+  decBRP: () => void;
+
+  setIsPlaying: (isPlaying: boolean) => void;
 };
 
 export const useGame = create<Game>()((set, get) => ({
+  isPlaying: false,
   bullets: 0,
   usedBullets: {},
   bulletColor: BulletColors.Green,
+  borrowRepayPercentage: 0,
   ethers: [],
   position: new Vector3(0, 0, 0),
   wreckedEthers: 0,
 
   gameLogic: new GameLogic(),
+
+  setIsPlaying: (isPlaying: boolean) => {
+    set((state) => ({
+      ...state,
+      isPlaying,
+    }));
+  },
 
   init: async (signer: Signer) => {
     const generatedEthers = asteroids.map(([x, y, z]) => new Vector3(x, y, z));
@@ -84,5 +100,18 @@ export const useGame = create<Game>()((set, get) => ({
 
   setBulletColor: (color: BulletColors) => {
     set((state) => ({ ...state, bulletColor: color }));
+  },
+
+  incBRP: () => {
+    set((state) => ({
+      ...state,
+      borrowRepayPercentage: state.borrowRepayPercentage < 100 ? state.borrowRepayPercentage + 1 : state.borrowRepayPercentage,
+    }));
+  },
+  decBRP: () => {
+    set((state) => ({
+      ...state,
+      borrowRepayPercentage: state.borrowRepayPercentage > 0 ? state.borrowRepayPercentage - 1 : state.borrowRepayPercentage,
+    }));
   },
 }));

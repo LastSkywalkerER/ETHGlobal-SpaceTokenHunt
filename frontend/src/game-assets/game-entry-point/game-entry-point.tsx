@@ -7,13 +7,14 @@ import { FC, Suspense, useState } from "react";
 import { Physics } from "@react-three/rapier";
 import { Experience } from "../experience";
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
+import { useGame } from "../../shared/services/game.service";
 
 export interface GameProps {
   map: KeyboardControlsEntry<string>[];
-  isPlaying: boolean;
 }
 
-export const GameEntryPoint: FC<GameProps> = ({ map, isPlaying }) => {
+export const GameEntryPoint: FC<GameProps> = ({ map }) => {
+  const { isPlaying } = useGame();
   const [downgradedPerformance, setDowngradedPerformance] = useState(false);
 
   return <KeyboardControls map={map}>

@@ -1,7 +1,7 @@
 "use client";
 
 import { KeyboardControlsEntry } from "@react-three/drei";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { embeddedWallet, ThirdwebProvider } from "@thirdweb-dev/react";
 import { ArbitrumSepolia } from "@thirdweb-dev/chains";
 import { Controls } from "../shared/constants";
@@ -13,7 +13,6 @@ import { ConnectKitProvider } from "connectkit";
 import { wagmiConfig } from "../shared/config/wagmi.config";
 
 export default function Home() {
-  const [isPlaying, setIsPlaying] = useState(false);
 
   const map = useMemo<KeyboardControlsEntry<Controls>[]>(
     () => [
@@ -38,10 +37,9 @@ export default function Home() {
             <Gui
               map={map}
               className="absolute z-10"
-              isPlaying={isPlaying}
-              setIsPlaying={setIsPlaying}
+
             />
-            <GameEntryPoint map={map} isPlaying={isPlaying} />
+            <GameEntryPoint map={map} />
           </div>
         </ConnectKitProvider>
       </WagmiConfig>
