@@ -8,8 +8,8 @@ import { Asteroid } from "../asteroid";
 import { Vector3 } from "three";
 import { BulletData } from "../../types/game.types";
 import { useSigner } from "@thirdweb-dev/react";
-import { useGame } from "@/shared/services/game.service";
-import { useShip } from "@/shared/services/ship.service";
+import { useGame } from "../../shared/services/game.service";
+import { useShip } from "../../shared/services/ship.service";
 
 interface Hit {
   id: number;
@@ -28,6 +28,8 @@ export const Experience: FC<ExperienceProps> = ({ downgradedPerformance }) => {
 
   const [bullets, setBullets] = useState<BulletData[]>([]);
   const [hits, setHits] = useState<Hit[]>([]);
+
+  const { bulletColor } = useGame();
 
   useEffect(() => {
     signer && init(signer);
@@ -66,6 +68,7 @@ export const Experience: FC<ExperienceProps> = ({ downgradedPerformance }) => {
         bullets.map((bullet) => (
           <Bullet
             key={bullet.id}
+            color={bulletColor}
             {...bullet}
             onHit={(position) => onHit(bullet.id, position)}
             WEAPON_OFFSET={shipSpecs.WEAPON_OFFSET}

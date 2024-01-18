@@ -4,10 +4,12 @@ import { asteroids } from "../constants";
 import { Signer } from "ethers";
 import { BulletData } from "../../types/game.types";
 import { GameLogic } from "../contracts/GameLogic";
+import { BulletColors } from "../constants/constants";
 
 type Game = {
   position: Vector3;
   bullets: number;
+  bulletColor: BulletColors;
   usedBullets: Record<string, BulletData>;
   ethers: { id: number; position: Vector3 }[];
   wreckedEthers: number;
@@ -22,11 +24,13 @@ type Game = {
     data: { hitPosition: Vector3; etherId: number; bulletId: number },
   ) => Promise<void>;
   loadGameData: (signer: Signer) => Promise<void>;
+  setBulletColor: (color: BulletColors) => void;
 };
 
 export const useGame = create<Game>()((set, get) => ({
   bullets: 0,
   usedBullets: {},
+  bulletColor: BulletColors.Green,
   ethers: [],
   position: new Vector3(0, 0, 0),
   wreckedEthers: 0,
@@ -76,5 +80,9 @@ export const useGame = create<Game>()((set, get) => ({
       ...state,
       ethers: state.ethers.filter(({ id }) => id !== etherId),
     }));
+  },
+
+  setBulletColor: (color: BulletColors) => {
+    set((state) => ({ ...state, bulletColor: color }));
   },
 }));

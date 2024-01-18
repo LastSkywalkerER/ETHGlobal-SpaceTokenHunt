@@ -1,15 +1,9 @@
 import { CollisionPayload, RapierRigidBody, RigidBody, vec3 } from "@react-three/rapier";
-import { FC, useEffect, useRef } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { Euler, MeshBasicMaterial, Quaternion, Vector3 } from "three";
 
 const BULLET_SPEED = 200;
 
-const bulletMaterial = new MeshBasicMaterial({
-  color: "green",
-  toneMapped: false,
-});
-
-bulletMaterial.color.multiplyScalar(42);
 
 export interface BulletUserData {
   type: string;
@@ -25,10 +19,22 @@ export interface BulletProps {
   position: { x: number; y: number; z: number };
   WEAPON_OFFSET: Vector3;
   onHit: (vector: Vector3) => void;
+  color: string;
 }
 
-export const Bullet: FC<BulletProps> = ({ id, player, angle, position, WEAPON_OFFSET, onHit }) => {
+export const Bullet: FC<BulletProps> = ({ id, player, angle, position, WEAPON_OFFSET, onHit, color }) => {
   const rigidbody = useRef<RapierRigidBody | null>(null);
+
+  const [bulletMaterial, setBulletMaterial] = useState<MeshBasicMaterial>(() => {
+    const bulletMaterial = new MeshBasicMaterial({
+      color,
+      toneMapped: false,
+    });
+
+    bulletMaterial.color.multiplyScalar(42);
+
+    return bulletMaterial;
+  });
 
   useEffect(() => {
     if (!rigidbody.current) return;

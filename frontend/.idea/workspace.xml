@@ -5,30 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="73a0ba74-f0e8-43ed-a541-1c0dd5b7202d" name="Changes" comment="improve gui flow, change coin appearance">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/frontend.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/eth.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/game-assets/coin/Coin.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/game-assets/coin/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/game-assets/game-entry-point/game-entry-point.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/game-assets/game-entry-point/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shared/config/wagmi.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/space-token-hunt.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game-assets/asteroid/Asteroid.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/asteroid/Asteroid.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/Bullet/Bullet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/Bullet/Bullet.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/experience/Experience.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/experience/Experience.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/Gui.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Gui.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/constants/asteroids.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/constants/asteroids.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/contracts/Ship/Ship.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/contracts/Ship/Ship.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/constants/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/constants/constants.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shared/services/game.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/services/game.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +158,8 @@
       <workItem from="1705504700839" duration="163000" />
       <workItem from="1705504950674" duration="42000" />
       <workItem from="1705509302159" duration="1557000" />
-      <workItem from="1705510972822" duration="1128000" />
+      <workItem from="1705510972822" duration="1749000" />
+      <workItem from="1705563804184" duration="3384000" />
     </task>
     <task id="LOCAL-00001" summary="fix ship collider and bluster shot">
       <option name="closed" value="true" />
@@ -202,7 +185,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705341634279</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="improve gui flow, change coin appearance">
+      <option name="closed" value="true" />
+      <created>1705512136843</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1705512136843</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

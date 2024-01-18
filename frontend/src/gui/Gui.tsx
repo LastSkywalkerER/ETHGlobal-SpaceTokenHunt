@@ -6,6 +6,7 @@ import { useGame } from "../shared/services/game.service";
 import { ConnectKitButton } from "connectkit";
 import { useAccount, useSendTransaction } from "wagmi";
 import { parseEther } from "viem";
+import { BulletColors } from "../shared/constants/constants";
 
 interface GuiProps {
   map: KeyboardControlsEntry<string>[];
@@ -33,6 +34,7 @@ export const Gui: FC<GuiProps> = ({ map, className, isPlaying, setIsPlaying }) =
   const { data } = useBalance();
   const { sendTransaction } = useSendTransaction();
   const { isConnected } = useAccount();
+  const { setBulletColor, bulletColor } = useGame();
 
   const { bullets, buyBullets: buyGameBullets, wreckedEthers, loadGameData } = useGame();
 
@@ -130,6 +132,14 @@ export const Gui: FC<GuiProps> = ({ map, className, isPlaying, setIsPlaying }) =
           )}
         </div>
       )}
+
+      {isPlaying && <div className={"fixed bottom-20 left-1/2 -translate-x-1/2 flex"}>
+        {[BulletColors.Green, BulletColors.Blue].map((color, index) => (
+          <GuiCard onClick={() => setBulletColor(color)} key={color} className={"flex flex-col gap-2 items-center"}>
+            <div className={"w-10 h-10"} style={{ backgroundColor: color }} />
+            {bulletColor === color ? <span className={"font-bold"}>{index}</span> : <span>{index}</span>}
+          </GuiCard>))}
+      </div>}
     </div>
   );
 };
