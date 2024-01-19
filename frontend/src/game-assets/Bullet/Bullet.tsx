@@ -4,7 +4,6 @@ import { Euler, MeshBasicMaterial, Quaternion, Vector3 } from "three";
 
 const BULLET_SPEED = 200;
 
-
 export interface BulletUserData {
   type: string;
   player: string;
@@ -22,10 +21,18 @@ export interface BulletProps {
   color: string;
 }
 
-export const Bullet: FC<BulletProps> = ({ id, player, angle, position, WEAPON_OFFSET, onHit, color }) => {
+export const Bullet: FC<BulletProps> = ({
+  id,
+  player,
+  angle,
+  position,
+  WEAPON_OFFSET,
+  onHit,
+  color,
+}) => {
   const rigidbody = useRef<RapierRigidBody | null>(null);
 
-  const [bulletMaterial, setBulletMaterial] = useState<MeshBasicMaterial>(() => {
+  const [bulletMaterial] = useState<MeshBasicMaterial>(() => {
     const bulletMaterial = new MeshBasicMaterial({
       color,
       toneMapped: false,

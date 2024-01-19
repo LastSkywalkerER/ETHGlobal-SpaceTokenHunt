@@ -1,10 +1,9 @@
 import { Instance, Instances } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { FC, useEffect, useMemo, useRef } from "react";
+import { FC, useEffect, useMemo, useRef, useState } from "react";
 import { Color, MathUtils, Vector3 } from "three";
 
-const bulletHitcolor = new Color("green");
-bulletHitcolor.multiplyScalar(12);
+import { BulletColors } from "../../shared/constants/constants";
 
 interface AnimatedBoxProps {
   scale: number;
@@ -14,6 +13,7 @@ interface AnimatedBoxProps {
 
 const AnimatedBox: FC<AnimatedBoxProps> = ({ scale, target, speed }) => {
   const ref = useRef<any | null>(null);
+
   useFrame((_, delta) => {
     if (!ref.current) return;
 
@@ -22,6 +22,7 @@ const AnimatedBox: FC<AnimatedBoxProps> = ({ scale, target, speed }) => {
     }
     ref.current.position.lerp(target, speed);
   });
+
   return <Instance ref={ref} scale={scale} position={[0, 0, 0]} />;
 };
 
@@ -30,9 +31,17 @@ export interface BulletHitProps {
   nb?: number;
   position: Vector3;
   onEnded: () => void;
+  color: BulletColors;
 }
 
-export const BulletHit: FC<BulletHitProps> = ({ nb = 100, position, onEnded }) => {
+export const BulletHit: FC<BulletHitProps> = ({ nb = 100, position, onEnded, color }) => {
+  const [bulletHitColor] = useState(() => {
+    const bulletHitColorObj = new Color(color);
+    bulletHitColorObj.multiplyScalar(12);
+
+    return bulletHitColorObj;
+  });
+
   const boxes = useMemo(
     () =>
       Array.from({ length: nb }, () => ({
@@ -57,7 +66,7 @@ export const BulletHit: FC<BulletHitProps> = ({ nb = 100, position, onEnded }) =
     <group position={[position.x, position.y, position.z]}>
       <Instances>
         <boxGeometry />
-        <meshStandardMaterial toneMapped={false} color={bulletHitcolor} />
+        <meshStandardMaterial toneMapped={false} color={bulletHitColor} />
         {boxes.map((box, i) => (
           <AnimatedBox key={i} {...box} />
         ))}

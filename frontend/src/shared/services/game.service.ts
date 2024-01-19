@@ -1,9 +1,10 @@
-import { create } from "zustand";
-import { Vector3 } from "three";
-import { asteroids } from "../constants";
 import { Signer } from "ethers";
+import { Vector3 } from "three";
+import { create } from "zustand";
+
 import { BulletData } from "../../types/game.types";
-import { GameLogic } from "../contracts/GameLogic";
+import { Users } from "../api/Users";
+import { asteroids } from "../constants";
 import { BulletColors } from "../constants/constants";
 
 type Game = {
@@ -15,8 +16,6 @@ type Game = {
   usedBullets: Record<string, BulletData>;
   ethers: { id: number; position: Vector3 }[];
   wreckedEthers: number;
-
-  gameLogic: GameLogic;
 
   init: (signer: Signer) => Promise<void>;
   buyBullets: (signer: Signer, amount: number) => Promise<void>;
@@ -34,7 +33,7 @@ type Game = {
   setIsPlaying: (isPlaying: boolean) => void;
 };
 
-export const useGame = create<Game>()((set, get) => ({
+export const useGame = create<Game>()((set) => ({
   isPlaying: false,
   bullets: 0,
   usedBullets: {},
@@ -43,8 +42,6 @@ export const useGame = create<Game>()((set, get) => ({
   ethers: [],
   position: new Vector3(0, 0, 0),
   wreckedEthers: 0,
-
-  gameLogic: new GameLogic(),
 
   setIsPlaying: (isPlaying: boolean) => {
     set((state) => ({
@@ -60,28 +57,32 @@ export const useGame = create<Game>()((set, get) => ({
       position,
     }));
 
+    const { message } = await Users.authLogin(await signer.getAddress());
+
+    const signature = await signer.signMessage(message);
+
+    await Users.verifyMessage({ address: await signer.getAddress(), signature });
+
+    await Users.getUser();
 
     set((state) => ({
       ...state,
       ethers,
     }));
   },
-  loadGameData: async (signer: Signer) => {
+  loadGameData: async () => {
     const generatedEthers = asteroids.map(([x, y, z]) => new Vector3(x, y, z));
     const ethers = generatedEthers.map((position, index) => ({
       id: index,
       position,
     }));
 
-
     set((state) => ({
       ...state,
       ethers,
     }));
   },
-  buyBullets: async (signer: Signer, amount: number) => {
-
-  },
+  buyBullets: async () => {},
   onShoot: (bullet: BulletData) => {
     set((state) => ({
       ...state,
@@ -90,7 +91,7 @@ export const useGame = create<Game>()((set, get) => ({
   },
   onHit: async (
     signer: Signer,
-    { bulletId, etherId, hitPosition }: { hitPosition: Vector3; etherId: number; bulletId: number },
+    { etherId }: { hitPosition: Vector3; etherId: number; bulletId: number },
   ) => {
     set((state) => ({
       ...state,
@@ -105,13 +106,19 @@ export const useGame = create<Game>()((set, get) => ({
   incBRP: () => {
     set((state) => ({
       ...state,
-      borrowRepayPercentage: state.borrowRepayPercentage < 100 ? state.borrowRepayPercentage + 1 : state.borrowRepayPercentage,
+      borrowRepayPercentage:
+        state.borrowRepayPercentage < 100
+          ? state.borrowRepayPercentage + 1
+          : state.borrowRepayPercentage,
     }));
   },
   decBRP: () => {
     set((state) => ({
       ...state,
-      borrowRepayPercentage: state.borrowRepayPercentage > 0 ? state.borrowRepayPercentage - 1 : state.borrowRepayPercentage,
+      borrowRepayPercentage:
+        state.borrowRepayPercentage > 0
+          ? state.borrowRepayPercentage - 1
+          : state.borrowRepayPercentage,
     }));
   },
 }));

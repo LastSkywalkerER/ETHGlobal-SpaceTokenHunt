@@ -1,25 +1,28 @@
 "use client";
 
-import cx from "classnames";
-import { GuiCard } from "./GuiCard";
 import { KeyboardControlsEntry } from "@react-three/drei";
-import { FC, ReactNode, useEffect, useRef, useState } from "react";
 import { ConnectWallet, useBalance, useSigner } from "@thirdweb-dev/react";
-import { useGame } from "../shared/services/game.service";
+import cx from "classnames";
 import { ConnectKitButton } from "connectkit";
+import { FC, ReactNode, useEffect, useRef, useState } from "react";
 import { useAccount } from "wagmi";
-import { BulletColors, colorToAction } from "../shared/constants/constants";
-import { BlurWrapper } from "./BlurWrapper";
-import { TopUpWindow } from "./TopUpWindow";
-import { GuiButton } from "./GuiButton";
-import { Balances } from "./Balances";
 
+import { BulletColors, colorToAction } from "../shared/constants/constants";
+import { useGame } from "../shared/services/game.service";
+import { useModal } from "../shared/services/modal";
+import { Balances } from "./Balances";
+import { BlurWrapper } from "./BlurWrapper";
+import { GuiButton } from "./GuiButton";
+import { GuiCard } from "./GuiCard";
+import ErrorModal from "./Modals/ErrorModal/ErrorModal";
+import { PageLoader } from "./Modals/PageLoader/PageLoader";
+import { SuccessModal } from "./Modals/SuccessModal/SuccessModal";
+import { TopUpWindow } from "./TopUpWindow";
 
 interface GuiProps {
   map: KeyboardControlsEntry<string>[];
   className?: string;
 }
-
 
 const minBalanceForGame = 0.1;
 
@@ -30,6 +33,8 @@ export const GuiOverlay: FC<GuiProps> = ({ map, className }) => {
   const signer = useSigner();
 
   const [modal, setModal] = useState<ReactNode>(null);
+
+  const { error, clearError, loading, success, clearSuccess } = useModal();
 
   const {
     setBulletColor,
@@ -58,8 +63,6 @@ export const GuiOverlay: FC<GuiProps> = ({ map, className }) => {
   };
 
   const topUp = async () => {
-
-
     setModal(<TopUpWindow />);
   };
 
@@ -68,14 +71,15 @@ export const GuiOverlay: FC<GuiProps> = ({ map, className }) => {
       <BlurWrapper modalContent={modal} isShow={!!modal} onClose={() => setModal(null)}>
         {/*Top panel*/}
         <div className="fixed top-0 w-full items-start justify-between flex">
-          {signer &&
+          {signer && (
             <div className={"flex gap-12"}>
               <ConnectWallet />
               <GuiCard>
                 <p>{`Current action - ${colorToAction[bulletColor]}`}</p>
                 <p>{`Action percentage - ${borrowRepayPercentage}%`}</p>
               </GuiCard>
-            </div>}
+            </div>
+          )}
           {isPlaying && (
             <GuiCard className="cursor-pointer py-1 px-2" onClick={pauseGame}>
               X
@@ -88,8 +92,7 @@ export const GuiOverlay: FC<GuiProps> = ({ map, className }) => {
 
         {/*Center panel*/}
         {!isPlaying && (
-          <div
-            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex items-center justify-center">
+          <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex items-center justify-center">
             {signer ? (
               <div className="flex gap-12 items-center justify-center">
                 <GuiCard>
@@ -106,27 +109,18 @@ export const GuiOverlay: FC<GuiProps> = ({ map, className }) => {
                   ))}
                 </GuiCard>
                 <GuiCard className="flex flex-col gap-12">
-                  {isConnected ? isReadyForGame ? <>
-                        <GuiButton
-                          onClick={beginGame}
-                        >
-                          Play
-                        </GuiButton>
-                        <GuiButton
-                          onClick={topUp}
-                        >
-                          Top up
-                        </GuiButton>
-                      </> :
-                      <GuiButton
-                        onClick={topUp}
-                      >
-                        Top up
-                      </GuiButton>
-                    :
-                    <ConnectKitButton />}
-
-
+                  {isConnected ? (
+                    isReadyForGame ? (
+                      <>
+                        <GuiButton onClick={beginGame}>Play</GuiButton>
+                        <GuiButton onClick={topUp}>Top up</GuiButton>
+                      </>
+                    ) : (
+                      <GuiButton onClick={topUp}>Top up</GuiButton>
+                    )
+                  ) : (
+                    <ConnectKitButton />
+                  )}
                 </GuiCard>
               </div>
             ) : (
@@ -136,29 +130,44 @@ export const GuiOverlay: FC<GuiProps> = ({ map, className }) => {
         )}
 
         {/*Bottom panel*/}
-        {isPlaying && <div className={"fixed bottom-20 left-1/2 -translate-x-1/2"}>
-          <div className={"relative flex"}>
-            <div className={"absolute top-1/2 right-0 translate-x-full -translate-y-1/2 flex flex-col items-center"}>
-              <GuiButton
-                onClick={incBRP}
+        {isPlaying && (
+          <div className={"fixed bottom-20 left-1/2 -translate-x-1/2"}>
+            <div className={"relative flex"}>
+              <div
+                className={
+                  "absolute top-1/2 right-0 translate-x-full -translate-y-1/2 flex flex-col items-center"
+                }
               >
-                +
-              </GuiButton>
-              <span>{borrowRepayPercentage}%</span>
-              <GuiButton
-                onClick={decBRP}
-              >
-                -
-              </GuiButton>
+                <GuiButton onClick={incBRP}>+</GuiButton>
+                <span>{borrowRepayPercentage}%</span>
+                <GuiButton onClick={decBRP}>-</GuiButton>
+              </div>
+              {[
+                BulletColors.Green,
+                BulletColors.Blue,
+                BulletColors.Orange,
+                BulletColors.Purple,
+              ].map((color, index) => (
+                <GuiCard
+                  onClick={() => setBulletColor(color)}
+                  key={color}
+                  className={"cursor-pointer flex flex-col gap-2 items-center"}
+                >
+                  <div className={"w-10 h-10"} style={{ backgroundColor: color }} />
+                  {bulletColor === color ? (
+                    <span className={"font-bold"}>{index}</span>
+                  ) : (
+                    <span>{index}</span>
+                  )}
+                </GuiCard>
+              ))}
             </div>
-            {[BulletColors.Green, BulletColors.Blue].map((color, index) => (
-              <GuiCard onClick={() => setBulletColor(color)} key={color}
-                       className={"cursor-pointer flex flex-col gap-2 items-center"}>
-                <div className={"w-10 h-10"} style={{ backgroundColor: color }} />
-                {bulletColor === color ? <span className={"font-bold"}>{index}</span> : <span>{index}</span>}
-              </GuiCard>))}
           </div>
-        </div>}
+        )}
+
+        {error && <ErrorModal error={error} onClose={clearError} />}
+        {loading && !success && <PageLoader />}
+        {success && !loading && <SuccessModal onClose={clearSuccess} />}
       </BlurWrapper>
     </div>
   );

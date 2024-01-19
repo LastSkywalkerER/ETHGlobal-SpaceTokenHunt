@@ -1,7 +1,7 @@
 "use client";
 
-import { PrimitiveProps } from "@react-three/fiber";
 import { useFBX, useTexture } from "@react-three/drei";
+import { PrimitiveProps } from "@react-three/fiber";
 import { FC, useLayoutEffect } from "react";
 import * as THREE from "three";
 
@@ -35,7 +35,7 @@ export const CustomFbxLoader: FC<Omit<PrimitiveProps, "object"> & CustomFbxLoade
   ]);
   const fbx = useFBX(fbxPath);
 
-  let fbxClone = fbx.clone();
+  const fbxClone = fbx.clone();
 
   useLayoutEffect(() => {
     fbxClone.traverse((realChild) => {

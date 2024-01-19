@@ -1,15 +1,14 @@
 import { Environment } from "@react-three/drei";
+import { FC, useState } from "react";
+import { Vector3 } from "three";
 
-import { FC, useEffect, useState } from "react";
+import { useGame } from "../../shared/services/game.service";
+import { useShip } from "../../shared/services/ship.service";
+import { BulletData } from "../../types/game.types";
+import { Asteroid } from "../asteroid";
 import { Bullet } from "../Bullet";
 import { BulletHit } from "../BulletHit";
 import { Ship } from "../ship";
-import { Asteroid } from "../asteroid";
-import { Vector3 } from "three";
-import { BulletData } from "../../types/game.types";
-import { useSigner } from "@thirdweb-dev/react";
-import { useGame } from "../../shared/services/game.service";
-import { useShip } from "../../shared/services/ship.service";
 
 interface Hit {
   id: number;
@@ -21,20 +20,13 @@ export interface ExperienceProps {
 }
 
 export const Experience: FC<ExperienceProps> = ({ downgradedPerformance }) => {
-  const { ethers, init, onShoot, position } = useGame();
-  const { shipSpecs, loadShipSpecs } = useShip();
-
-  const signer = useSigner();
+  const { ethers, onShoot, position } = useGame();
+  const { shipSpecs } = useShip();
 
   const [bullets, setBullets] = useState<BulletData[]>([]);
   const [hits, setHits] = useState<Hit[]>([]);
 
   const { bulletColor } = useGame();
-
-  useEffect(() => {
-    signer && init(signer);
-    loadShipSpecs();
-  }, [signer]);
 
   const onFire = async (bullet: BulletData) => {
     await onShoot(bullet);
@@ -76,7 +68,7 @@ export const Experience: FC<ExperienceProps> = ({ downgradedPerformance }) => {
         ))}
 
       {hits.map((hit) => (
-        <BulletHit key={hit.id} {...hit} onEnded={() => onHitEnded(hit.id)} />
+        <BulletHit key={hit.id} {...hit} onEnded={() => onHitEnded(hit.id)} color={bulletColor} />
       ))}
       <ambientLight intensity={1} />
       <Environment files={"./space/Space_sn_copy.hdr"} background />

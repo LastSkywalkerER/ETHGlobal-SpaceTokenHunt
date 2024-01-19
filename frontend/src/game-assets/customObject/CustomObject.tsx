@@ -1,10 +1,9 @@
-'use client';
+"use client";
 
-import { PrimitiveProps, useLoader } from '@react-three/fiber';
-import { useTexture } from '@react-three/drei';
-import { FC, useLayoutEffect } from 'react';
-import * as THREE from 'three';
-import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+import { useTexture } from "@react-three/drei";
+import { PrimitiveProps, useLoader } from "@react-three/fiber";
+import { FC, useLayoutEffect } from "react";
+import * as THREE from "three";
 
 export interface CustomObjectLoaderProps {
   objectPath: string;
@@ -15,9 +14,7 @@ export interface CustomObjectLoaderProps {
   metalnessPath: string;
 }
 
-export const CustomObjectLoader: FC<
-  Omit<PrimitiveProps, 'object'> & CustomObjectLoaderProps
-> = ({
+export const CustomObjectLoader: FC<Omit<PrimitiveProps, "object"> & CustomObjectLoaderProps> = ({
   objectPath,
   texturePath,
   normalPath,
@@ -33,9 +30,9 @@ export const CustomObjectLoader: FC<
     roughnessPath,
     metalnessPath,
   ]);
-  const obj = useLoader(OBJLoader as any, objectPath);
+  const obj = useLoader(THREE.Loader as any, objectPath);
 
-  let objClone = obj.clone();
+  const objClone = obj.clone();
 
   useLayoutEffect(() => {
     objClone.traverse(
@@ -45,7 +42,7 @@ export const CustomObjectLoader: FC<
         },
       ) => {
         if (child.isMesh) {
-          const material = new THREE.MeshStandardMaterial({
+          child.material = new THREE.MeshStandardMaterial({
             map: texture,
             normalMap: normal,
             // displacementMap: height,
@@ -55,8 +52,6 @@ export const CustomObjectLoader: FC<
             metalnessMap: metalness,
             bumpMap: height,
           });
-
-          child.material = material;
           child.geometry.computeVertexNormals();
         }
       },

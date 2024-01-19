@@ -1,5 +1,5 @@
-import { Billboard, Text } from '@react-three/drei';
-import { FC } from 'react';
+import { Billboard, Text } from "@react-three/drei";
+import { FC } from "react";
 
 export interface ShipInfoProps {
   name: string;

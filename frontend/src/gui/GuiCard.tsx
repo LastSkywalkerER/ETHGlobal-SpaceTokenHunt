@@ -1,5 +1,5 @@
-import { FC, HTMLAttributes } from "react";
 import cx from "classnames";
+import { FC, HTMLAttributes } from "react";
 
 export const GuiCard: FC<HTMLAttributes<HTMLDivElement>> = ({ children, className, ...props }) => {
   return (

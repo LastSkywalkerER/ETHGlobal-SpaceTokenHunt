@@ -1,10 +1,10 @@
-import { FC, HTMLAttributes, useEffect, useState } from "react";
-import { GuiCard } from "./GuiCard";
-import { Table, TableConfig } from "./Table";
-import { mockNative, mockTokens } from "./mockTokens";
 import { useAddress, useBalance, useContract } from "@thirdweb-dev/react";
-import { ERC20 } from "../shared/constants/ERC20";
+import { FC, HTMLAttributes, useEffect, useState } from "react";
 
+import { ERC20 } from "../shared/constants/ERC20";
+import { GuiCard } from "./GuiCard";
+import { mockNative, mockTokens } from "./mockTokens";
+import { Table, TableConfig } from "./Table";
 
 export const TokenBalance: FC<{ address: string }> = ({ address }) => {
   const { contract } = useContract(address, ERC20);
@@ -27,7 +27,6 @@ export const NativeBalance: FC = () => {
 };
 
 export const Balances: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
-
   const config: TableConfig[] = [
     {
       accessor: "logo",
@@ -38,15 +37,22 @@ export const Balances: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
       accessor: "name",
       cell: ({ data }) => data,
       header: "name",
-    }, {
+    },
+    {
       accessor: "balance",
-      cell: ({ row }) => row["address"] === mockNative ? <NativeBalance /> :
-        <TokenBalance address={String(row["address"])} />,
+      cell: ({ row }) =>
+        row["address"] === mockNative ? (
+          <NativeBalance />
+        ) : (
+          <TokenBalance address={String(row["address"])} />
+        ),
       header: "Balance",
     },
   ];
 
-  return <GuiCard {...props}>
-    <Table config={config} data={mockTokens} />
-  </GuiCard>;
+  return (
+    <GuiCard {...props}>
+      <Table config={config} data={mockTokens} />
+    </GuiCard>
+  );
 };

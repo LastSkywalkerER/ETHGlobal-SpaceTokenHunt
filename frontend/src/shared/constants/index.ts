@@ -1,2 +1,2 @@
-export * from './asteroids';
-export * from './controls';
+export * from "./asteroids";
+export * from "./controls";

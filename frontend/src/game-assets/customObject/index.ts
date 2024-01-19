@@ -1,2 +1,2 @@
-export * from './CustomObject';
-export * from './CustomFBX';
+export * from "./CustomFBX";
+export * from "./CustomObject";

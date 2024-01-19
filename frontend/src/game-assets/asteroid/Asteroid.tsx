@@ -1,9 +1,16 @@
-import { CollisionPayload, RapierRigidBody, RigidBody, RigidBodyProps, vec3 } from "@react-three/rapier";
-import { FC, useRef, useState } from "react";
-import { BulletUserData } from "../Bullet";
-import { Vector3 } from "three";
+import {
+  CollisionPayload,
+  RapierRigidBody,
+  RigidBody,
+  RigidBodyProps,
+  vec3,
+} from "@react-three/rapier";
 import { useSigner } from "@thirdweb-dev/react";
+import { FC, useRef, useState } from "react";
+import { Vector3 } from "three";
+
 import { useGame } from "../../shared/services/game.service";
+import { BulletUserData } from "../Bullet";
 import { Coin } from "../coin";
 
 export interface AsteroidProps {

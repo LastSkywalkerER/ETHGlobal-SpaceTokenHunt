@@ -5,20 +5,71 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="73a0ba74-f0e8-43ed-a541-1c0dd5b7202d" name="Changes" comment="add top up flow">
-      <change afterPath="$PROJECT_DIR$/src/gui/Balances.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/BlurWrapper.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/GuiButton.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/GuiCard.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/GuiOverlay.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/Table.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/TopUpWindow.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/mockTokens.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shared/constants/ERC20.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/Modals/ErrorModal/ErrorModal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/Modals/ErrorModal/types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/Modals/PageLoader/PageLoader.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/Modals/SuccessModal/SuccessModal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/Modals/SuccessModal/types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/api/Api.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/config/axios.config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/constants/storageKeys.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/helpers/Storage.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/services/modal/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/services/modal/modal.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/services/modal/modal.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/Gui.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/Bullet/Bullet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/Bullet/Bullet.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/Bullet/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/Bullet/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/BulletHit/BulletHit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/BulletHit/BulletHit.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/BulletHit/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/BulletHit/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/asteroid/Asteroid.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/asteroid/Asteroid.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/asteroid/asssets.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/asteroid/asssets.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/asteroid/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/asteroid/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/coin/Coin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/coin/Coin.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/coin/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/coin/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/controls/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/controls/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/customObject/CustomFBX.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/customObject/CustomFBX.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/customObject/CustomObject.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/customObject/CustomObject.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/customObject/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/customObject/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/experience/Experience.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/experience/Experience.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/experience/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/experience/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/game-entry-point/game-entry-point.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/game-entry-point/game-entry-point.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/game-entry-point/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/game-entry-point/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/ship/Crosshair.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/ship/Crosshair.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/ship/Ship.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/ship/Ship.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/ship/ShipInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/ship/ShipInfo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/ship/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/ship/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/Balances.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Balances.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/BlurWrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/BlurWrapper.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/GuiButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/GuiButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/GuiCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/GuiCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/GuiOverlay.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/GuiOverlay.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/Table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Table.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/TopUpWindow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/TopUpWindow.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/mockTokens.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/mockTokens.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/config/wagmi.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/config/wagmi.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/constants/ERC20.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/constants/ERC20.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/constants/asteroids.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/constants/asteroids.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/constants/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/constants/constants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/constants/controls.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/constants/controls.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/constants/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/constants/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/contracts/GameContract.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/contracts/GameLogic/GameLogic.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/contracts/GameLogic/GameLogic.types.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/contracts/GameLogic/abi.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/contracts/GameLogic/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/contracts/Ship/Ship.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/contracts/Ship/Ship.types.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/contracts/Ship/abi.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/contracts/Ship/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/contracts/common.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/services/game.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/services/game.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/services/ship.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/services/ship.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,7 +88,13 @@
     <option name="myRunOnSave" value="true" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="f0bfec02d510d28d60c93334d16e9fe8f57d172d" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -80,9 +137,9 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_interpreter_path&quot;: &quot;wsl://Ubuntu@/root/.nvm/versions/node/v18.18.2/bin/node&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;\\root\\projects\\space-resolution\\node_modules\\prettier&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;\\\\wsl$\\Ubuntu\\root\\projects\\ETHGlobal-SpaceTokenHunt\\frontend\\node_modules\\prettier&quot;,
     &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.TypeScript&quot;,
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
     &quot;ts.external.directory.path&quot;: &quot;\\\\wsl$\\Ubuntu\\root\\projects\\ETHGlobal-SpaceTokenHunt\\frontend\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
@@ -115,7 +172,10 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\src\gui" />
-      <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\src\app" />
+      <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\src\shared\helpers" />
+      <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\src\shared\services" />
+      <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\src\shared\constants" />
+      <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\src\shared\api" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\src\shared\constants" />
@@ -173,6 +233,11 @@
       <workItem from="1705646902943" duration="9850000" />
       <workItem from="1705664400369" duration="4706000" />
       <workItem from="1705669425337" duration="3124000" />
+      <workItem from="1705674927576" duration="2403000" />
+      <workItem from="1705678060616" duration="55000" />
+      <workItem from="1705678120035" duration="131000" />
+      <workItem from="1705678258759" duration="3315000" />
+      <workItem from="1705687308500" duration="4138000" />
     </task>
     <task id="LOCAL-00001" summary="fix ship collider and bluster shot">
       <option name="closed" value="true" />
@@ -227,6 +292,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix ship collider and bluster shot" />

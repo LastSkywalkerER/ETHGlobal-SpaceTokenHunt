@@ -1,6 +1,6 @@
-import { createConfig } from "wagmi";
 import { getDefaultConfig } from "connectkit";
-import { arbitrumSepolia } from "wagmi/chains";
+import { createConfig } from "wagmi";
+import { sepolia } from "wagmi/chains";
 
 export const wagmiConfig = createConfig(
   getDefaultConfig({
@@ -15,6 +15,6 @@ export const wagmiConfig = createConfig(
     appDescription: "Aave learning platform",
     appUrl: "https://space-token-hunt.vercel.app/", // your app's url
     appIcon: "https://ipfs.io/ipfs/QmYkMf37Dgis8NecSzWEqMec4U4hTRQ7KtSLvNpmnoj1PL", // your app's icon, no bigger than 1024x1024px (max. 1MB)
-    chains: [arbitrumSepolia],
+    chains: [sepolia],
   }),
 );

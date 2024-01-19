@@ -1,16 +1,17 @@
 "use client";
 
-import { GroupProps, useFrame } from "@react-three/fiber";
 import { CameraControls, useKeyboardControls } from "@react-three/drei";
+import { GroupProps, useFrame } from "@react-three/fiber";
+import { quat, RapierRigidBody, RigidBody, vec3 } from "@react-three/rapier";
 import { FC, useEffect, useRef } from "react";
 import * as THREE from "three";
-import { RapierRigidBody, RigidBody, quat, vec3 } from "@react-three/rapier";
-import { CustomFbxLoader } from "../customObject";
-import {  shipAssets2 } from "./asssets";
 import { Group } from "three";
-import { ShipInfo } from "./ShipInfo";
-import { BulletData, ShipSpecs } from "../../types/game.types";
+
 import { Controls } from "../../shared/constants";
+import { BulletData, ShipSpecs } from "../../types/game.types";
+import { CustomFbxLoader } from "../customObject";
+import { shipAssets2 } from "./asssets";
+import { ShipInfo } from "./ShipInfo";
 
 const direction = new THREE.Vector3();
 const rotation = new THREE.Vector3();
@@ -40,7 +41,7 @@ export const Ship: FC<GroupProps & ShipProps> = ({
   const right = useKeyboardControls<Controls>((state) => state.right);
   const fire = useKeyboardControls<Controls>((state) => state.fire);
 
-  useFrame((state, delta) => {
+  useFrame(() => {
     if (!specs) return;
     const { FIRE_RATE, MOVE_ANGLE_SPEED, MOVE_SPEED } = specs;
 

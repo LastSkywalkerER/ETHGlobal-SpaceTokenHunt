@@ -1,1 +1,1 @@
-export * from './BulletHit';
+export * from "./BulletHit";

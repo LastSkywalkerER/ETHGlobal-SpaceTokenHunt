@@ -1,5 +1,5 @@
-import { GroupProps } from '@react-three/fiber';
-import { FC } from 'react';
+import { GroupProps } from "@react-three/fiber";
+import { FC } from "react";
 
 export const Crosshair: FC<GroupProps> = (props) => {
   return (

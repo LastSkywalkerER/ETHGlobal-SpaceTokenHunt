@@ -1,0 +1,15 @@
+Index: src/.next/cache/eslint/.cache_1juy3qu
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>[{\"/root/projects/ETHGlobal-SpaceTokenHunt/frontend/src/app/layout.tsx\":\"1\",\"/root/projects/ETHGlobal-SpaceTokenHunt/frontend/src/app/page.tsx\":\"2\"},{\"size\":452,\"mtime\":1705336887261,\"results\":\"3\",\"hashOfConfig\":\"4\"},{\"size\":2891,\"mtime\":1705335887840,\"results\":\"5\",\"hashOfConfig\":\"4\"},{\"filePath\":\"6\",\"messages\":\"7\",\"suppressedMessages\":\"8\",\"errorCount\":0,\"fatalErrorCount\":0,\"warningCount\":0,\"fixableErrorCount\":0,\"fixableWarningCount\":0},\"4g4b5f\",{\"filePath\":\"9\",\"messages\":\"10\",\"suppressedMessages\":\"11\",\"errorCount\":0,\"fatalErrorCount\":0,\"warningCount\":0,\"fixableErrorCount\":0,\"fixableWarningCount\":0},\"/root/projects/ETHGlobal-SpaceTokenHunt/frontend/src/app/layout.tsx\",[],[],\"/root/projects/ETHGlobal-SpaceTokenHunt/frontend/src/app/page.tsx\",[],[]]
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/.next/cache/eslint/.cache_1juy3qu b/src/.next/cache/eslint/.cache_1juy3qu
+--- a/src/.next/cache/eslint/.cache_1juy3qu	
++++ b/src/.next/cache/eslint/.cache_1juy3qu	
+@@ -1,1 +1,1 @@
+-[{"/root/projects/ETHGlobal-SpaceTokenHunt/frontend/src/app/layout.tsx":"1","/root/projects/ETHGlobal-SpaceTokenHunt/frontend/src/app/page.tsx":"2"},{"size":452,"mtime":1705336887261,"results":"3","hashOfConfig":"4"},{"size":2891,"mtime":1705335887840,"results":"5","hashOfConfig":"4"},{"filePath":"6","messages":"7","suppressedMessages":"8","errorCount":0,"fatalErrorCount":0,"warningCount":0,"fixableErrorCount":0,"fixableWarningCount":0},"4g4b5f",{"filePath":"9","messages":"10","suppressedMessages":"11","errorCount":0,"fatalErrorCount":0,"warningCount":0,"fixableErrorCount":0,"fixableWarningCount":0},"/root/projects/ETHGlobal-SpaceTokenHunt/frontend/src/app/layout.tsx",[],[],"/root/projects/ETHGlobal-SpaceTokenHunt/frontend/src/app/page.tsx",[],[]]
+\ No newline at end of file
++[{"/root/projects/ETHGlobal-SpaceTokenHunt/frontend/src/app/layout.tsx":"1","/root/projects/ETHGlobal-SpaceTokenHunt/frontend/src/app/page.tsx":"2"},{"size":452,"mtime":1705336887261,"results":"3","hashOfConfig":"4"},{"size":1479,"mtime":1705664689305,"results":"5","hashOfConfig":"4"},{"filePath":"6","messages":"7","suppressedMessages":"8","errorCount":0,"fatalErrorCount":0,"warningCount":0,"fixableErrorCount":0,"fixableWarningCount":0},"4g4b5f",{"filePath":"9","messages":"10","suppressedMessages":"11","errorCount":0,"fatalErrorCount":0,"warningCount":0,"fixableErrorCount":0,"fixableWarningCount":0},"/root/projects/ETHGlobal-SpaceTokenHunt/frontend/src/app/layout.tsx",[],[],"/root/projects/ETHGlobal-SpaceTokenHunt/frontend/src/app/page.tsx",[],[]]
+\ No newline at end of file
