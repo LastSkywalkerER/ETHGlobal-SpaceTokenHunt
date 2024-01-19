@@ -4,13 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="73a0ba74-f0e8-43ed-a541-1c0dd5b7202d" name="Changes" comment="add bullet color change">
+    <list default="true" id="73a0ba74-f0e8-43ed-a541-1c0dd5b7202d" name="Changes" comment="add top up flow">
+      <change afterPath="$PROJECT_DIR$/src/gui/Balances.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/BlurWrapper.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/GuiButton.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/GuiCard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/GuiOverlay.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/Table.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/TopUpWindow.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/mockTokens.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/constants/ERC20.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game-assets/game-entry-point/game-entry-point.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/game-entry-point/game-entry-point.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/Gui.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Gui.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/constants/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/constants/constants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/services/game.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/services/game.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/Gui.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +69,7 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;20.3.0&quot;,
     &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;20.3.3&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/maxdr/OneDrive/Рабочий стол/0xTitans&quot;,
+    &quot;last_opened_file_path&quot;: &quot;//wsl$/Ubuntu/root/projects/ETHGlobal-SpaceTokenHunt/frontend/src/gui&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
@@ -105,14 +114,15 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\src\gui" />
       <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\src\app" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\src\shared\constants" />
+      <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\public" />
       <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\src" />
       <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\src\game-assets" />
       <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\src\shared" />
-      <recent name="$PROJECT_DIR$/src/services/game/gameLogic" />
-      <recent name="$PROJECT_DIR$/src/mud" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -159,7 +169,10 @@
       <workItem from="1705504950674" duration="42000" />
       <workItem from="1705509302159" duration="1557000" />
       <workItem from="1705510972822" duration="1749000" />
-      <workItem from="1705563804184" duration="5754000" />
+      <workItem from="1705563804184" duration="6194000" />
+      <workItem from="1705646902943" duration="9850000" />
+      <workItem from="1705664400369" duration="4706000" />
+      <workItem from="1705669425337" duration="3124000" />
     </task>
     <task id="LOCAL-00001" summary="fix ship collider and bluster shot">
       <option name="closed" value="true" />
@@ -201,7 +214,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705569533508</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="add borrow supply percentage">
+      <option name="closed" value="true" />
+      <created>1705573584216</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1705573584216</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,7 +234,9 @@
     <MESSAGE value="fix build" />
     <MESSAGE value="improve gui flow, change coin appearance" />
     <MESSAGE value="add bullet color change" />
-    <option name="LAST_COMMIT_MESSAGE" value="add bullet color change" />
+    <MESSAGE value="add borrow supply percentage" />
+    <MESSAGE value="add top up flow" />
+    <option name="LAST_COMMIT_MESSAGE" value="add top up flow" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

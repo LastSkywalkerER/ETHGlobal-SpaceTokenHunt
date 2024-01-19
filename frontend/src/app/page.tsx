@@ -5,7 +5,7 @@ import { useMemo } from "react";
 import { embeddedWallet, ThirdwebProvider } from "@thirdweb-dev/react";
 import { ArbitrumSepolia } from "@thirdweb-dev/chains";
 import { Controls } from "../shared/constants";
-import { Gui } from "../gui";
+import { GuiOverlay } from "../gui";
 import { config } from "../shared/config/environment.config";
 import { GameEntryPoint } from "../game-assets/game-entry-point";
 import { WagmiConfig } from "wagmi";
@@ -34,10 +34,8 @@ export default function Home() {
       <WagmiConfig config={wagmiConfig}>
         <ConnectKitProvider>
           <div className="relative">
-            <Gui
+            <GuiOverlay
               map={map}
-              className="absolute z-10"
-
             />
             <GameEntryPoint map={map} />
           </div>

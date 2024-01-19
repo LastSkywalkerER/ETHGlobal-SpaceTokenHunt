@@ -7,6 +7,18 @@
   resolved "https://registry.yarnpkg.com/@aashutoshrathi/word-wrap/-/word-wrap-1.2.6.tgz#bd9154aec9983f77b3a034ecaa015c2e4201f6cf"
   integrity sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==
 
+"@aave/contract-helpers@^1.22.0":
+  version "1.22.0"
+  resolved "https://registry.yarnpkg.com/@aave/contract-helpers/-/contract-helpers-1.22.0.tgz#b7fe364320d5d4fe70beca1a37bf885c13cc1e1c"
+  integrity sha512-d0diRcgRABbx7r/f7L1G3fVYQJav4YncdutcJpmvBpb4xgttRBrIORsUONDC5w60XOIqK083wvK8unisGNkByg==
+  dependencies:
+    isomorphic-unfetch "^3.1.0"
+
+"@aave/math-utils@^1.22.0":
+  version "1.22.0"
+  resolved "https://registry.yarnpkg.com/@aave/math-utils/-/math-utils-1.22.0.tgz#79e5e75a79e885bd219960c3f9b3701e593248a8"
+  integrity sha512-MEveynU2Z5f5R7Mvp67HUHuizQSaWzcER667x4VkUtyXwBMZleI+5bO+rtYo3wvj/136fN/aB0Pbxy5y3EPArg==
+
 "@account-abstraction/contracts@^0.5.0":
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/@account-abstraction/contracts/-/contracts-0.5.0.tgz#a089aee7b4c446251fbbce7df315bbf8f659e37f"
@@ -7343,6 +7355,11 @@ react-dom@18.2.0:
   dependencies:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
+
+react-hook-form@^7.49.3:
+  version "7.49.3"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.49.3.tgz#576a4567f8a774830812f4855e89f5da5830435c"
+  integrity sha512-foD6r3juidAT1cOZzpmD/gOKt7fRsDhXXZ0y28+Al1CHgX+AY1qIN9VSIIItXRq1dN68QrRwl1ORFlwjBaAqeQ==
 
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
