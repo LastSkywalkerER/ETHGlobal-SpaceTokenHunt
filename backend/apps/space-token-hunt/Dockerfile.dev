@@ -1,0 +1,8 @@
+FROM node:lts-slim
+WORKDIR /app
+COPY ./package.json .
+COPY ./yarn.lock .
+RUN yarn install --frozen-lockfile --non-interactive
+COPY . .
+RUN yarn build
+CMD ["sh", "-c", "yarn typeorm:run-migrations && node dist/apps/space-token-hunt/main"]

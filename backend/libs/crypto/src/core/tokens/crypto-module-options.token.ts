@@ -1,0 +1,1 @@
+export const CRYPTO_MODULE_OPTIONS = Symbol.for('CRYPTO_MODULE_OPTIONS');

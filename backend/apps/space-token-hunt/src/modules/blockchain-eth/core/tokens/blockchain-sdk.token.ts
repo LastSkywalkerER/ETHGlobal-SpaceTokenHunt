@@ -1,0 +1,1 @@
+export const BLOCKCHAIN_ETH_SDK_TOKEN = Symbol.for('BLOCKCHAIN_ETH_SDK_TOKEN');
