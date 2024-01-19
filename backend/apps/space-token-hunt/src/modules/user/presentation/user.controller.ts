@@ -14,4 +14,9 @@ export class UserController {
   public async getUser(@User() user: CurrentUser) {
     return await this.userDomain.getUserByUuid(user.userUuid);
   }
+
+  @Get('healthcheck')
+  public async healthCheck() {
+    return 'hello';
+  }
 }
