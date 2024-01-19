@@ -16,9 +16,19 @@ import { Coin } from "../coin";
 export interface AsteroidProps {
   onKilled?: () => void;
   id: number;
+  name: string;
+  address: string;
+  logo: string;
 }
 
-export const Asteroid: FC<RigidBodyProps & AsteroidProps> = ({ onKilled, id, ...props }) => {
+export const Asteroid: FC<RigidBodyProps & AsteroidProps> = ({
+  onKilled,
+  id,
+  name,
+  address,
+  logo,
+  ...props
+}) => {
   const rigidBody = useRef<RapierRigidBody | null>(null);
 
   const signer = useSigner();
@@ -38,6 +48,9 @@ export const Asteroid: FC<RigidBodyProps & AsteroidProps> = ({ onKilled, id, ...
           bulletId: userData.bulletId,
           etherId: id,
           hitPosition: vec3(rigidBody.current?.translation()),
+          name,
+          address,
+          action: userData.action,
         });
         setIsDead(true);
         onKilled && onKilled();
@@ -70,7 +83,7 @@ export const Asteroid: FC<RigidBodyProps & AsteroidProps> = ({ onKilled, id, ...
       onIntersectionEnter={intersectionHandler}
       colliders={"hull"}
     >
-      <Coin />
+      <Coin logo={logo} />
     </RigidBody>
   );
 };

@@ -1,28 +1,46 @@
 import { useSigner } from "@thirdweb-dev/react";
-import { FC } from "react";
+import { Contract } from "ethers";
+import { FC, ReactNode } from "react";
 import { useForm } from "react-hook-form";
-import { parseEther } from "viem";
-import { useSendTransaction } from "wagmi";
+import { parseEther, parseUnits } from "viem";
+import { erc20ABI, useSendTransaction, useWalletClient } from "wagmi";
 
+import { mockNative, mockTokens } from "../shared/constants/mockTokens";
 import { GuiButton } from "./GuiButton";
 import { GuiCard } from "./GuiCard";
-import { mockNative, mockTokens } from "./mockTokens";
 import { Table, TableConfig } from "./Table";
 
 type TokenValues = Record<string, string>;
 
 export const TopUpWindow: FC = () => {
   const { sendTransaction } = useSendTransaction();
+  const { data: walletClient } = useWalletClient();
   const signer = useSigner();
 
   const { register, getValues } = useForm<TokenValues>();
 
   const topUp = async (token: string) => {
-    if (signer && token === mockNative) {
+    if (!signer || !walletClient) return;
+
+    if (token === mockNative) {
       sendTransaction({
         to: await signer.getAddress(),
         value: parseEther(String(getValues(token))),
       });
+    } else {
+      const tokenContract = new Contract(token, erc20ABI, signer);
+      const decimals = await tokenContract.decimals();
+
+      walletClient.writeContract({
+        // account: address,
+        abi: erc20ABI,
+        address: token as `0x${string}`,
+        functionName: "transfer",
+        args: [
+          (await signer.getAddress()) as `0x${string}`,
+          parseUnits(String(getValues(token)), Number(decimals)),
+        ],
+      } as any);
     }
   };
 
@@ -34,7 +52,7 @@ export const TopUpWindow: FC = () => {
     },
     {
       accessor: "name",
-      cell: ({ data }) => data,
+      cell: ({ data }) => data as ReactNode,
       header: "name",
     },
     {

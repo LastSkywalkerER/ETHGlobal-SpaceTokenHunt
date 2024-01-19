@@ -2,6 +2,7 @@ import { Environment } from "@react-three/drei";
 import { FC, useState } from "react";
 import { Vector3 } from "three";
 
+import { mockTokens } from "../../shared/constants/mockTokens";
 import { useGame } from "../../shared/services/game.service";
 import { useShip } from "../../shared/services/ship.service";
 import { BulletData } from "../../types/game.types";
@@ -20,7 +21,7 @@ export interface ExperienceProps {
 }
 
 export const Experience: FC<ExperienceProps> = ({ downgradedPerformance }) => {
-  const { ethers, onShoot, position } = useGame();
+  const { onShoot, position } = useGame();
   const { shipSpecs } = useShip();
 
   const [bullets, setBullets] = useState<BulletData[]>([]);
@@ -52,9 +53,25 @@ export const Experience: FC<ExperienceProps> = ({ downgradedPerformance }) => {
           specs={shipSpecs}
         />
       )}
-      {ethers.map(({ id, position }) => (
-        <Asteroid key={id} position={position} id={id} />
-      ))}
+      {mockTokens.map((data, index) => {
+        const { name, position, logo, address } = data as {
+          name: string;
+          position: { x: number; y: number; z: number };
+          address: string;
+          logo: string;
+        };
+
+        return (
+          <Asteroid
+            key={String(name)}
+            position={new Vector3(position.x, position.y, position.z)}
+            id={index}
+            address={address}
+            logo={logo}
+            name={name}
+          />
+        );
+      })}
 
       {shipSpecs &&
         bullets.map((bullet) => (

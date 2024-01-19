@@ -2,6 +2,8 @@ import { CollisionPayload, RapierRigidBody, RigidBody, vec3 } from "@react-three
 import { FC, useEffect, useRef, useState } from "react";
 import { Euler, MeshBasicMaterial, Quaternion, Vector3 } from "three";
 
+import { BulletActions, BulletColors, colorToAction } from "../../shared/constants/constants";
+
 const BULLET_SPEED = 200;
 
 export interface BulletUserData {
@@ -9,6 +11,7 @@ export interface BulletUserData {
   player: string;
   bulletId: number;
   damage: number;
+  action: BulletActions;
 }
 
 export interface BulletProps {
@@ -18,7 +21,7 @@ export interface BulletProps {
   position: { x: number; y: number; z: number };
   WEAPON_OFFSET: Vector3;
   onHit: (vector: Vector3) => void;
-  color: string;
+  color: BulletColors;
 }
 
 export const Bullet: FC<BulletProps> = ({
@@ -81,6 +84,7 @@ export const Bullet: FC<BulletProps> = ({
               player,
               damage: 10,
               bulletId: id,
+              action: colorToAction[color],
             } as BulletUserData
           }
         >

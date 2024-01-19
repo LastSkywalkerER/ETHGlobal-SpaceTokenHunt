@@ -5,7 +5,7 @@ import { create } from "zustand";
 import { BulletData } from "../../types/game.types";
 import { Users } from "../api/Users";
 import { asteroids } from "../constants";
-import { BulletColors } from "../constants/constants";
+import { BulletActions, BulletColors } from "../constants/constants";
 
 type Game = {
   isPlaying: boolean;
@@ -22,7 +22,14 @@ type Game = {
   onShoot: (bullet: BulletData) => void;
   onHit: (
     signer: Signer,
-    data: { hitPosition: Vector3; etherId: number; bulletId: number },
+    data: {
+      hitPosition: Vector3;
+      etherId: number;
+      bulletId: number;
+      name: string;
+      address: string;
+      action: BulletActions;
+    },
   ) => Promise<void>;
   loadGameData: (signer: Signer) => Promise<void>;
   setBulletColor: (color: BulletColors) => void;
@@ -91,8 +98,24 @@ export const useGame = create<Game>()((set) => ({
   },
   onHit: async (
     signer: Signer,
-    { etherId }: { hitPosition: Vector3; etherId: number; bulletId: number },
+    {
+      etherId,
+      action,
+      name,
+      address,
+      bulletId,
+      hitPosition,
+    }: {
+      hitPosition: Vector3;
+      etherId: number;
+      bulletId: number;
+      name: string;
+      address: string;
+      action: BulletActions;
+    },
   ) => {
+    console.log({ hitPosition, etherId, bulletId, name, address, action });
+
     set((state) => ({
       ...state,
       ethers: state.ethers.filter(({ id }) => id !== etherId),
