@@ -1,29 +1,44 @@
 import { Injectable } from '@nestjs/common';
-import { ThirdwebSDK } from '@thirdweb-dev/sdk';
-import { utils } from 'ethers';
+import { ContractInterface, ethers, utils } from 'ethers';
 import {
   BadRequestException,
   ForbiddenException,
 } from 'space-token-hunt/exceptions';
 
-import { TokenDomain } from '../../../tokens/domain/token.domain';
-import {
-  GetBlockchainDataParameters,
-  VerifyMessageParameters,
-} from '../sdk-interfaces';
+import { abi } from '../abis/abi';
+import { VerifyMessageParameters } from '../sdk-interfaces';
 @Injectable()
 export class BlockchainEthSdk {
-  constructor(private readonly tokenDomain: TokenDomain) {}
+  protected provider: ethers.providers.JsonRpcProvider;
+  protected contract: ethers.Contract;
+  protected contractAddress: string;
+  protected abi: ContractInterface;
+  protected interface: ethers.utils.Interface;
 
-  private async getBlockchainData({
-    address,
-    abi,
-  }: GetBlockchainDataParameters) {
-    const sdk = new ThirdwebSDK('goerli');
-    const contract = await sdk.getContract(address, abi);
+  constructor() {
+    this.provider = new ethers.providers.JsonRpcProvider(
+      'https://ethereum-sepolia.publicnode.com',
+    );
+    this.contractAddress = '0x6Ae43d3271ff6888e7Fc43Fd7321a503ff738951';
+    this.abi = abi;
+    this.contract = new ethers.Contract(
+      this.contractAddress,
+      this.abi,
+      this.provider,
+    );
+    this.interface = new ethers.utils.Interface(JSON.stringify(this.abi));
+  }
+
+  public async getBlockchainData(address: string) {
+    const data = await this.contract['getUserAccountData(address)'](address);
+
+    const netWorth =
+      Number(ethers.utils.formatUnits(data.totalCollateralBase, 8)) -
+      Number(ethers.utils.formatUnits(data.totalDebtBase, 8));
 
     return {
-      contract,
+      healthFactor: Number(ethers.utils.formatUnits(data.healthFactor, 18)),
+      netWorth: Number(netWorth.toFixed(2)),
     };
   }
 

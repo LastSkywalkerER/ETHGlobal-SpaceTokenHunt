@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { CryptoModule } from 'space-token-hunt/crypto';
 
 import { TokenModule } from '../tokens/token.module';
@@ -10,7 +10,7 @@ import { BlockchainEthSdk } from './infrastructure/sdk';
 
 @Module({
   exports: [BlockchainEthDomain],
-  imports: [UserModule, CryptoModule, TokenModule],
+  imports: [forwardRef(() => UserModule), CryptoModule, TokenModule],
   providers: [
     { provide: BLOCKCHAIN_ETH_SDK_TOKEN, useClass: BlockchainEthSdk },
     BlockchainEthDomain,
