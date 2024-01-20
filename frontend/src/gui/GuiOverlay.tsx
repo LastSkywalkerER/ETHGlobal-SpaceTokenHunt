@@ -92,7 +92,7 @@ export const GuiOverlay: FC<GuiProps> = ({ map, className }) => {
 
         {/*Center panel*/}
         {!isPlaying && (
-          <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex items-center justify-center">
+          <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
             {signer ? (
               <div className="flex gap-12 items-center justify-center">
                 <GuiCard>
@@ -107,16 +107,22 @@ export const GuiOverlay: FC<GuiProps> = ({ map, className }) => {
                   {map.map(({ name, keys }) => (
                     <p key={name}>{`${name} - ${keys.map((key) => `${key} `)}`}</p>
                   ))}
+                  <div className={"bg-white w-full h-[1px] my-2"} />
+                  <div className={"max-w-[200px]"}>
+                    <span className={"text-sm"}>
+                      * A minimum top up of 0.1 ETH is required to play the game
+                    </span>
+                  </div>
                 </GuiCard>
                 <GuiCard className="flex flex-col gap-12">
                   {isConnected ? (
                     isReadyForGame ? (
                       <>
                         <GuiButton onClick={beginGame}>Play</GuiButton>
-                        <GuiButton onClick={topUp}>Top up</GuiButton>
+                        <GuiButton onClick={topUp}>Top&nbsp;up</GuiButton>
                       </>
                     ) : (
-                      <GuiButton onClick={topUp}>Top up</GuiButton>
+                      <GuiButton onClick={topUp}>Top&nbsp;up</GuiButton>
                     )
                   ) : (
                     <ConnectKitButton />
@@ -143,10 +149,10 @@ export const GuiOverlay: FC<GuiProps> = ({ map, className }) => {
                 <GuiButton onClick={decBRP}>-</GuiButton>
               </div>
               {[
-                BulletColors.Green,
-                BulletColors.Blue,
-                BulletColors.Orange,
                 BulletColors.Purple,
+                BulletColors.Orange,
+                BulletColors.Blue,
+                BulletColors.Green,
               ].map((color, index) => (
                 <GuiCard
                   onClick={() => setBulletColor(color)}
@@ -155,9 +161,9 @@ export const GuiOverlay: FC<GuiProps> = ({ map, className }) => {
                 >
                   <div className={"w-10 h-10"} style={{ backgroundColor: color }} />
                   {bulletColor === color ? (
-                    <span className={"font-bold"}>{index}</span>
+                    <span className={"font-bold"}>{colorToAction[color]}</span>
                   ) : (
-                    <span>{index}</span>
+                    <span>{colorToAction[color]}</span>
                   )}
                 </GuiCard>
               ))}
