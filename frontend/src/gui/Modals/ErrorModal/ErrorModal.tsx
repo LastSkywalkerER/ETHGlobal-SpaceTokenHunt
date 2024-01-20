@@ -56,11 +56,10 @@ const ErrorModal: React.FC<ModalProps> = ({ error, onClose }) => {
         <div className="text-p1 w-full text-vitreus-luminous-green text-center overflow-hidden relative inline-block text-ellipsis nowrap">
           {getErrorText()}
         </div>
-        {getErrorText() !== "Game over" && (
-          <GuiButton className="w-1/2 mt-20" onClick={onClose}>
-            Got it
-          </GuiButton>
-        )}
+
+        <GuiButton className="w-1/2 mt-20" onClick={onClose}>
+          Got it
+        </GuiButton>
       </GuiCard>
     </div>
   );

@@ -52,10 +52,7 @@ export const GuiOverlay: FC<GuiProps> = ({ map, className }) => {
     user,
   } = useGame();
 
-  const isReadyForGame =
-    +(data?.displayValue || "0") >= minBalanceForGame &&
-    user?.healthFactor &&
-    user.healthFactor >= gameOverHealthFactor;
+  const isReadyForGame = +(data?.displayValue || "0") >= minBalanceForGame;
 
   const beginGame = () => {
     audio.current?.play();
