@@ -38,4 +38,16 @@ export class Users {
 
     return response.data;
   }
+
+  public static async ratingBoard() {
+    const response = await axios.get<
+      {
+        id: number;
+        totalBalance: string;
+        walletAddress: string;
+      }[]
+    >("/api/v1/rating-board");
+
+    return response.data;
+  }
 }

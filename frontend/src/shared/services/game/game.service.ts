@@ -116,18 +116,20 @@ export const useGame = create<Game>()((set, get) => ({
       useModal.getState().setError(error as TransactionError);
     }
 
-    try {
-      const user = await Users.getUser();
+    setTimeout(async () => {
+      try {
+        const user = await Users.getUser();
 
-      if (user.healthFactor < gameOverHealthFactor) throw Error("Game over");
+        if (user.healthFactor < gameOverHealthFactor) throw Error("Game over");
 
-      set((state) => ({
-        ...state,
-        user,
-      }));
-    } catch (error) {
-      useModal.getState().setError(error as Error);
-    }
+        set((state) => ({
+          ...state,
+          user,
+        }));
+      } catch (error) {
+        useModal.getState().setError(error as Error);
+      }
+    }, 5000);
   },
 
   setBulletColor: (color) => {

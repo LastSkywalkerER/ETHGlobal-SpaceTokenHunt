@@ -15,6 +15,7 @@ import {
 } from "../shared/constants/constants";
 import { useGame } from "../shared/services/game/game.service";
 import { useModal } from "../shared/services/modal";
+import { Avatar } from "./Avatar";
 import { Balances } from "./Balances";
 import { BlurWrapper } from "./BlurWrapper";
 import { GuiButton } from "./GuiButton";
@@ -22,6 +23,7 @@ import { GuiCard } from "./GuiCard";
 import ErrorModal from "./Modals/ErrorModal/ErrorModal";
 import { PageLoader } from "./Modals/PageLoader/PageLoader";
 import { SuccessModal } from "./Modals/SuccessModal/SuccessModal";
+import { RatingBoard } from "./RatingBoard";
 import { TopUpWindow } from "./TopUpWindow";
 
 interface GuiProps {
@@ -64,8 +66,12 @@ export const GuiOverlay: FC<GuiProps> = ({ map, className }) => {
     setIsPlaying(false);
   };
 
-  const topUp = async () => {
+  const topUp = () => {
     setModal(<TopUpWindow />);
+  };
+
+  const ratingBoard = () => {
+    setModal(<RatingBoard />);
   };
 
   return (
@@ -77,11 +83,7 @@ export const GuiOverlay: FC<GuiProps> = ({ map, className }) => {
             <div className={"flex gap-12"}>
               <ConnectWallet />
               <GuiCard>
-                <img
-                  className={"w-[50px] h-[50px]"}
-                  src={`https://robohash.org/${user.address}`}
-                  alt="avatar"
-                />
+                <Avatar walletAddress={user.address} />
               </GuiCard>
               <GuiCard>
                 <p>{`Current action - ${colorToAction[bulletColor]}`}</p>
@@ -135,10 +137,14 @@ export const GuiOverlay: FC<GuiProps> = ({ map, className }) => {
                     isReadyForGame ? (
                       <>
                         <GuiButton onClick={beginGame}>Play</GuiButton>
-                        <GuiButton onClick={topUp}>Top&nbsp;up</GuiButton>
+                        <GuiButton onClick={topUp}>Top&nbsp;Up</GuiButton>
+                        <GuiButton onClick={ratingBoard}>Rating&nbsp;Board</GuiButton>
                       </>
                     ) : (
-                      <GuiButton onClick={topUp}>Top&nbsp;up</GuiButton>
+                      <>
+                        <GuiButton onClick={topUp}>Top&nbsp;Up</GuiButton>
+                        <GuiButton onClick={ratingBoard}>Rating&nbsp;Board</GuiButton>
+                      </>
                     )
                   ) : (
                     <ConnectKitButton />

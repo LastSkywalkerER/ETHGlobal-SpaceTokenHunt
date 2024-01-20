@@ -34,7 +34,7 @@ export const TopUpWindow: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
       setTokens(data as unknown as TableData[]);
     };
 
-    init;
+    init();
   }, []);
 
   const topUp = async (token: string) => {
