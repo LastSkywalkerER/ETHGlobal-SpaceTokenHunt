@@ -32,3 +32,14 @@ services:
     ports:
       - "5432:5432"
     restart: always
+
+  nginx_dev:
+    build:
+      context: .
+      dockerfile: Dockerfile-nginx
+    container_name: nginx_dev
+    restart: on-failure
+    env_file:
+      - .env
+    ports:
+      - "443:443"
