@@ -43,10 +43,10 @@ export class TokenService {
       tokens.push(tokensData[randomIndex]);
     }
 
-    const data = tokens.map((token, i) => ({
+    const data = tokens.map((token) => ({
       ...token,
       position: this.createCoordinateAroundShip({
-        shipPosition,
+        shipPosition: shipPosition ? shipPosition : { x: 0, y: 0, z: 0 },
       }),
     }));
 
