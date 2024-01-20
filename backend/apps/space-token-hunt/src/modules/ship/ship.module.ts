@@ -2,6 +2,7 @@ import { HttpModule } from '@nestjs/axios';
 import { Module, forwardRef } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { RatingModule } from '../rating';
 import { UserModule } from '../user';
 
 import { ShipService } from './application';
@@ -22,6 +23,7 @@ import { ShipGateway } from './presentation/ship.gateway';
     TypeOrmModule.forFeature([ShipEntity]),
     HttpModule,
     forwardRef(() => UserModule),
+    forwardRef(() => RatingModule),
   ],
   providers: [
     ShipDomain,

@@ -19,7 +19,8 @@ export class UserService {
 
     return {
       ...user,
-      ...data,
+      healthFactor: data.healthFactor,
+      netWorth: data.netWorth,
     };
   }
 }

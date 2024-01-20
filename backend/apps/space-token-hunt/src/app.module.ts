@@ -12,6 +12,7 @@ import { WinstonConfigService } from './config/winston';
 import { AuthRefreshTokenModule } from './modules/auth-refresh-token';
 import { BlockchainEthModule } from './modules/blockchain-eth';
 import { CryptoAuthModule } from './modules/crypto-auth';
+import { RatingModule } from './modules/rating';
 import { ShipModule } from './modules/ship/ship.module';
 import { UserModule } from './modules/user';
 
@@ -34,6 +35,7 @@ import { UserModule } from './modules/user';
     BlockchainEthModule,
     AuthRefreshTokenModule,
     ShipModule,
+    RatingModule,
   ],
   controllers: [],
   providers: [],

@@ -7,12 +7,16 @@ import {
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 
+import { RatingService } from '../../rating/application';
 import { ShipDomain } from '../domain';
 
 @WebSocketGateway({ namespace: '/ship' })
 export class ShipGateway {
   private readonly connectedMap = new Map<string, Socket>();
-  constructor(private readonly shipDomain: ShipDomain) {}
+  constructor(
+    private readonly shipDomain: ShipDomain,
+    private readonly ratingService: RatingService,
+  ) {}
 
   @WebSocketServer()
   server: Server;
@@ -45,6 +49,7 @@ export class ShipGateway {
       y,
       z,
     });
+    await this.ratingService.createRatingRecord({ userId: userUuid as string });
     await this.shipDomain.deleteTemporaryShipPosition({
       userId: userUuid as string,
     });

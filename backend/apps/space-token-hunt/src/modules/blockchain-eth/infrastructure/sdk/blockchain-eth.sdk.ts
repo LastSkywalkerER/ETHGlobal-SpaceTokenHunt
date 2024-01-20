@@ -39,6 +39,10 @@ export class BlockchainEthSdk {
     return {
       healthFactor: Number(ethers.utils.formatUnits(data.healthFactor, 18)),
       netWorth: Number(netWorth.toFixed(2)),
+      supplyBalance: Number(
+        ethers.utils.formatUnits(data.totalCollateralBase, 8),
+      ),
+      borrowBalance: Number(ethers.utils.formatUnits(data.totalDebtBase, 8)),
     };
   }
 

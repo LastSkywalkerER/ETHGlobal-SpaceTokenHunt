@@ -19,4 +19,7 @@ export const apiConfig = {
   ship: {
     getCurrentUserShipPosition: `${basePath}/ship-position`,
   },
+  rating: {
+    getRatingBoard: `${basePath}/rating-board`,
+  },
 };
