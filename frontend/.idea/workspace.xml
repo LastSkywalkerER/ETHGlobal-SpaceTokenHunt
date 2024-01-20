@@ -5,14 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="73a0ba74-f0e8-43ed-a541-1c0dd5b7202d" name="Changes" comment="connect add some tokens, fix gui">
-      <change afterPath="$PROJECT_DIR$/src/shared/helpers/removeDuplicates.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/api/Ship.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/api/Tokens.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/helpers/Queue.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/asteroid/Asteroid.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/asteroid/Asteroid.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/experience/Experience.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/experience/Experience.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/ship/Ship.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/ship/Ship.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/Balances.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Balances.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/GuiOverlay.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/GuiOverlay.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/Modals/ErrorModal/ErrorModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Modals/ErrorModal/ErrorModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/Modals/PageLoader/PageLoader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Modals/PageLoader/PageLoader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/Modals/SuccessModal/SuccessModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Modals/SuccessModal/SuccessModal.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/TopUpWindow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/TopUpWindow.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/constants/mockTokens.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/constants/mockTokens.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/api/Users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/api/Users.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/config/environment.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/config/environment.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/config/wagmi.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/config/wagmi.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/constants/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/constants/constants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/helpers/removeDuplicates.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/helpers/removeDuplicates.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/hooks/useShipPosition.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/hooks/useShipPosition.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shared/services/game/game.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/services/game/game.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/services/ship.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/services/ship.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/game.types.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/game.types.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +82,7 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;20.3.0&quot;,
     &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;20.3.3&quot;,
-    &quot;last_opened_file_path&quot;: &quot;//wsl$/Ubuntu/root/projects/ETHGlobal-SpaceTokenHunt/frontend/src/gui&quot;,
+    &quot;last_opened_file_path&quot;: &quot;//wsl$/Ubuntu/root/projects/ETHGlobal-SpaceTokenHunt/frontend/src/shared/api&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
@@ -113,11 +127,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\src\shared\api" />
       <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\src\gui" />
       <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\src\shared\helpers" />
       <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\src\shared\services" />
       <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\src\shared\constants" />
-      <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\src\shared\api" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\src\shared\services\game" />
@@ -181,7 +195,7 @@
       <workItem from="1705678258759" duration="3315000" />
       <workItem from="1705687308500" duration="12523000" />
       <workItem from="1705740511743" duration="596000" />
-      <workItem from="1705746654165" duration="17197000" />
+      <workItem from="1705746654165" duration="20748000" />
     </task>
     <task id="LOCAL-00001" summary="fix ship collider and bluster shot">
       <option name="closed" value="true" />
@@ -255,7 +269,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705761083668</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="connect add some tokens, fix gui">
+      <option name="closed" value="true" />
+      <created>1705766923371</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1705766923371</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

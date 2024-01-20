@@ -2,15 +2,19 @@ import { useCallback, useEffect, useRef } from "react";
 import { io, Socket } from "socket.io-client";
 
 import { baseURL } from "../constants/constants";
+import { useGame } from "../services/game/game.service";
 
 export const useShipPosition = () => {
   const shipSocket = useRef<Socket | null>(null);
+  const { user } = useGame();
 
   useEffect(() => {
+    if (!user || shipSocket.current) return;
+
     shipSocket.current = io(`${baseURL}/ship`, {
       transports: ["websocket"],
       query: {
-        userUuid: "userUuid",
+        userUuid: user.uuid,
       },
     });
 
@@ -21,7 +25,7 @@ export const useShipPosition = () => {
       shipSocket.current?.off("connect");
       shipSocket.current?.off("disconnect");
     };
-  }, []);
+  }, [user]);
 
   const sendShipPosition = useCallback((shipPosition: { x: number; y: number; z: number }) => {
     if (!shipSocket.current) return;

@@ -2,6 +2,7 @@ import { Vector3 } from "three";
 import { create } from "zustand";
 
 import { ShipSpecs } from "../../types/game.types";
+import { Ship } from "../api/Ship";
 import { nk } from "../helpers/ethSpecsParse";
 
 type Game = {
@@ -28,6 +29,8 @@ export const useShip = create<Game>()((set) => ({
       },
     };
 
+    const { x, y, z } = await Ship.getCurrentUserShipPosition();
+
     const parsedData = {
       ANGULAR_DAMPING: nk(data.ANGULAR_DAMPING),
       FIRE_RATE: nk(data.FIRE_RATE),
@@ -40,6 +43,7 @@ export const useShip = create<Game>()((set) => ({
         nk(data.WEAPON_OFFSET.y),
         nk(data.WEAPON_OFFSET.z),
       ),
+      CURRENT_POSITION: new Vector3(+x, +y, +z),
     };
 
     set((state) => ({ ...state, shipSpecs: parsedData }));

@@ -16,4 +16,5 @@ export interface ShipSpecs {
   ANGULAR_DAMPING: number;
   FIRE_RATE: number;
   WEAPON_OFFSET: Vector3;
+  CURRENT_POSITION: Vector3;
 }
