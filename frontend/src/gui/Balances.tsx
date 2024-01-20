@@ -1,4 +1,5 @@
 import { useAddress, useBalance, useContract } from "@thirdweb-dev/react";
+import cx from "classnames";
 import { FC, HTMLAttributes, ReactNode, useEffect, useState } from "react";
 import { formatUnits } from "viem";
 
@@ -59,7 +60,7 @@ export const Balances: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
   ];
 
   return (
-    <GuiCard {...props}>
+    <GuiCard {...props} className={cx("overflow-y-auto max-h-[500px]", props.className)}>
       <Table config={config} data={mockTokens} />
     </GuiCard>
   );

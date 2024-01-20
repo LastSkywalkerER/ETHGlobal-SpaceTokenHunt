@@ -1,18 +1,20 @@
 import { useSigner } from "@thirdweb-dev/react";
+import cx from "classnames";
 import { Contract } from "ethers";
-import { FC, ReactNode } from "react";
+import { FC, HTMLAttributes, ReactNode } from "react";
 import { useForm } from "react-hook-form";
 import { parseEther, parseUnits } from "viem";
 import { erc20ABI, useSendTransaction, useWalletClient } from "wagmi";
 
 import { mockNative, mockTokens } from "../shared/constants/mockTokens";
+import { removeDuplicates } from "../shared/helpers/removeDuplicates";
 import { GuiButton } from "./GuiButton";
 import { GuiCard } from "./GuiCard";
-import { Table, TableConfig } from "./Table";
+import { Table, TableConfig, TableData } from "./Table";
 
 type TokenValues = Record<string, string>;
 
-export const TopUpWindow: FC = () => {
+export const TopUpWindow: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
   const { sendTransaction } = useSendTransaction();
   const { data: walletClient } = useWalletClient();
   const signer = useSigner();
@@ -71,7 +73,7 @@ export const TopUpWindow: FC = () => {
     {
       accessor: "supply",
       cell: ({ row }) => (
-        <GuiButton onClick={() => topUp(String(row["address"]))}>Top up</GuiButton>
+        <GuiButton onClick={() => topUp(String(row["address"]))}>Top&nbsp;up</GuiButton>
       ),
       header: "",
     },
@@ -83,8 +85,8 @@ export const TopUpWindow: FC = () => {
   ];
 
   return (
-    <GuiCard>
-      <Table config={config} data={mockTokens} />
+    <GuiCard {...props} className={cx("overflow-y-auto max-h-[500px]", props.className)}>
+      <Table config={config} data={removeDuplicates<TableData, string>(mockTokens, "address")} />
     </GuiCard>
   );
 };

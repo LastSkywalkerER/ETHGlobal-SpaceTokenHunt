@@ -47,7 +47,7 @@ export const useGame = create<Game>()((set, get) => ({
   isPlaying: false,
   bullets: 0,
   usedBullets: {},
-  bulletColor: BulletColors.Green,
+  bulletColor: BulletColors.Purple,
   borrowRepayPercentage: 0,
   ethers: [],
   position: new Vector3(0, 0, 0),
@@ -111,7 +111,11 @@ export const useGame = create<Game>()((set, get) => ({
       amount = (+formatUnits(amount as unknown as bigint, decimals) * borrowRepayPercentage) / 100;
     }
 
-    bulletNameToAction[action]({ signer, amount: String(amount), tokenAddress: address });
+    await bulletNameToAction[action]({
+      signer,
+      amount: String(amount),
+      tokenAddress: address,
+    });
 
     set((state) => ({
       ...state,
@@ -128,7 +132,7 @@ export const useGame = create<Game>()((set, get) => ({
       ...state,
       borrowRepayPercentage:
         state.borrowRepayPercentage < 100
-          ? state.borrowRepayPercentage + 1
+          ? state.borrowRepayPercentage + 5
           : state.borrowRepayPercentage,
     }));
   },
@@ -137,7 +141,7 @@ export const useGame = create<Game>()((set, get) => ({
       ...state,
       borrowRepayPercentage:
         state.borrowRepayPercentage > 0
-          ? state.borrowRepayPercentage - 1
+          ? state.borrowRepayPercentage - 5
           : state.borrowRepayPercentage,
     }));
   },
