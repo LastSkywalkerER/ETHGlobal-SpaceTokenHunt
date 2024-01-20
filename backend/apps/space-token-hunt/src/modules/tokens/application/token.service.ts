@@ -31,20 +31,25 @@ export class TokenService {
   }
 
   public async getTokens({ userId }: GetTokensParameters) {
-    const tokens = await this.tokenDomain.getTokens();
+    const tokensData = await this.tokenDomain.getTokens();
     const shipPosition = await this.shipDomain.getTemporaryShipPosition({
       userId,
     });
 
-    const data = tokens.map((token) => ({
+    const tokens = [];
+
+    for (let i = 0; i < 50; i++) {
+      const randomIndex = Math.floor(Math.random() * tokensData.length);
+      tokens.push(tokensData[randomIndex]);
+    }
+
+    const data = tokens.map((token, i) => ({
       ...token,
       position: this.createCoordinateAroundShip({
         shipPosition,
       }),
     }));
 
-    console.log(data);
-
-    return '';
+    return data;
   }
 }

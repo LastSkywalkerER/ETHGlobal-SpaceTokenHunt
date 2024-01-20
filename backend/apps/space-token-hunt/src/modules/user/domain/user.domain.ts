@@ -30,14 +30,4 @@ export class UserDomain {
     });
     return data;
   }
-
-  public async getUserId(uuid: string) {
-    const data = await this.userRepository.findOne({
-      where: {
-        uuid,
-      },
-      select: ['id'],
-    });
-    return data;
-  }
 }
