@@ -17,16 +17,4 @@ export class TokenRepository extends Repository<TokenEntity> {
       tokenRepository.queryRunner,
     );
   }
-  public async createToken({ token }: { token: TokenEntity }) {
-    const queryRunner = this.dataSource.createQueryRunner();
-    await queryRunner.connect();
-    await queryRunner.startTransaction();
-    try {
-      await queryRunner.manager.save(token);
-    } catch (error) {
-      await queryRunner.rollbackTransaction();
-    } finally {
-      await queryRunner.release();
-    }
-  }
 }

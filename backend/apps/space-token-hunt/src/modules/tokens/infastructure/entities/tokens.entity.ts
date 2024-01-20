@@ -9,10 +9,10 @@ export enum TypeTokens {
 export class TokenEntity {
   constructor(props: DeepPartial<TokenEntity>) {
     if (props) {
-      const { name, logo, mintAddress } = props;
+      const { name, logo, address } = props;
       this.name = name;
       this.logo = logo;
-      this.mintAddress = mintAddress;
+      this.address = address;
     }
   }
   @PrimaryGeneratedColumn()
@@ -24,6 +24,6 @@ export class TokenEntity {
   @Column({ type: 'varchar', name: 'logo' })
   logo: string;
 
-  @Column({ type: 'varchar', name: 'mintAddress' })
-  mintAddress: string;
+  @Column({ type: 'varchar', name: 'address' })
+  address: string;
 }
