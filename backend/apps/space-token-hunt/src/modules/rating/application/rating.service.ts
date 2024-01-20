@@ -25,7 +25,19 @@ export class RatingService {
       totalBalance: blockchainData.supplyBalance + blockchainData.borrowBalance,
       walletAddress: user.walletAddress,
     };
-    return await this.ratingDomain.createRatingRecord(data);
+
+    const ratingRecord = await this.ratingDomain.getRatingRecordByWalletAddress(
+      user.walletAddress,
+    );
+
+    if (ratingRecord) {
+      return await this.ratingDomain.updateRatingRecord(
+        ratingRecord.id,
+        data.totalBalance,
+      );
+    } else {
+      return await this.ratingDomain.createRatingRecord(data);
+    }
   }
 
   public async getRatingBoard() {

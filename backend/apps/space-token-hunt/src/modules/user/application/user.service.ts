@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { NotFoundException } from 'space-token-hunt/exceptions';
 
 import { BlockchainEthDomain } from '../../blockchain-eth/domain';
 import { UserDomain } from '../domain';
@@ -12,6 +13,10 @@ export class UserService {
 
   public async getCurrentUserData(userUuid: string) {
     const user = await this.userDomain.getUserByUuid(userUuid);
+
+    if (!user) {
+      throw new NotFoundException('user not found');
+    }
 
     const data = await this.blockchainEthDomain.getBlockchainData(
       user.walletAddress,
