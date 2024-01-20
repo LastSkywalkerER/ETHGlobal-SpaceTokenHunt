@@ -3,10 +3,11 @@ import cx from "classnames";
 import { FC, HTMLAttributes, ReactNode, useEffect, useState } from "react";
 import { formatUnits } from "viem";
 
+import { Tokens } from "../shared/api/Tokens";
 import { ERC20 } from "../shared/constants/ERC20";
 import { mockNative, mockTokens } from "../shared/constants/mockTokens";
 import { GuiCard } from "./GuiCard";
-import { Table, TableConfig } from "./Table";
+import { Table, TableConfig, TableData } from "./Table";
 
 export const TokenBalance: FC<{ address: string }> = ({ address }) => {
   const { contract } = useContract(address, ERC20);
@@ -35,33 +36,63 @@ export const NativeBalance: FC = () => {
   return data?.displayValue || "0";
 };
 
+const config: TableConfig[] = [
+  {
+    accessor: "logo",
+    cell: ({ data }) => <img className={"w-10 h-10"} src={String(data)} alt="logo" />,
+    header: "Logo",
+  },
+  {
+    accessor: "name",
+    cell: ({ data }) => data as ReactNode,
+    header: "name",
+  },
+  {
+    accessor: "walletBalance",
+    cell: ({ row }) =>
+      row["address"] === mockNative ? (
+        <NativeBalance />
+      ) : (
+        <TokenBalance address={String(row["address"])} />
+      ),
+    header: "Wallet Balance",
+  },
+  {
+    accessor: "balance",
+    cell: ({ data }) => data as ReactNode,
+    header: "Balance",
+  },
+  {
+    accessor: "available",
+    cell: ({ data }) => data as ReactNode,
+    header: "Available",
+  },
+  {
+    accessor: "debt",
+    cell: ({ data }) => data as ReactNode,
+    header: "Debt",
+  },
+];
+
 export const Balances: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
-  const config: TableConfig[] = [
-    {
-      accessor: "logo",
-      cell: ({ data }) => <img className={"w-10 h-10"} src={String(data)} alt="logo" />,
-      header: "Logo",
-    },
-    {
-      accessor: "name",
-      cell: ({ data }) => data as ReactNode,
-      header: "name",
-    },
-    {
-      accessor: "balance",
-      cell: ({ row }) =>
-        row["address"] === mockNative ? (
-          <NativeBalance />
-        ) : (
-          <TokenBalance address={String(row["address"])} />
-        ),
-      header: "Balance",
-    },
-  ];
+  const [tokens, setTokens] = useState(mockTokens);
+
+  useEffect(() => {
+    const init = async () => {
+      const data = await Tokens.getGuiTokens();
+
+      setTokens(data as unknown as TableData[]);
+    };
+
+    init;
+  }, []);
 
   return (
-    <GuiCard {...props} className={cx("overflow-y-auto max-h-[500px]", props.className)}>
-      <Table config={config} data={mockTokens} />
+    <GuiCard
+      {...props}
+      className={cx("overflow-auto max-h-[500px] max-w-[400px]", props.className)}
+    >
+      <Table config={config} data={tokens} />
     </GuiCard>
   );
 };

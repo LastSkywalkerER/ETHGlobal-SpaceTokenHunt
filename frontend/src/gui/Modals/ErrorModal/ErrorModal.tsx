@@ -1,6 +1,7 @@
 import React from "react";
 
 import { GuiButton } from "../../GuiButton";
+import { GuiCard } from "../../GuiCard";
 import { ModalProps } from "./types";
 
 const ErrorModal: React.FC<ModalProps> = ({ error, onClose }) => {
@@ -50,14 +51,17 @@ const ErrorModal: React.FC<ModalProps> = ({ error, onClose }) => {
 
   return (
     <div className="z-50 fixed top-0 left-0 flex justify-center items-center w-full h-full">
-      <div className="w-[500rem] min-h-[300rem] flex flex-col items-center justify-between bg-whitelabel-main-800 rounded-large animate-fade-in p-40 mx-20">
+      <div className="absolute bg-black opacity-70 top-0 left-0 w-full h-full" />
+      <GuiCard className="z-50 w-[500px] min-h-[300px] flex flex-col items-center justify-between bg-whitelabel-main-800 rounded-large animate-fade-in p-40 mx-20">
         <div className="text-p1 w-full text-vitreus-luminous-green text-center overflow-hidden relative inline-block text-ellipsis nowrap">
           {getErrorText()}
         </div>
-        <GuiButton className="w-1/2 mt-20" onClick={onClose}>
-          Got it
-        </GuiButton>
-      </div>
+        {getErrorText() !== "Game over" && (
+          <GuiButton className="w-1/2 mt-20" onClick={onClose}>
+            Got it
+          </GuiButton>
+        )}
+      </GuiCard>
     </div>
   );
 };

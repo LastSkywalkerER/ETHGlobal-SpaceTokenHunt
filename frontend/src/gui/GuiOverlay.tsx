@@ -4,10 +4,15 @@ import { KeyboardControlsEntry } from "@react-three/drei";
 import { ConnectWallet, useBalance, useSigner } from "@thirdweb-dev/react";
 import cx from "classnames";
 import { ConnectKitButton } from "connectkit";
-import { FC, ReactNode, useEffect, useRef, useState } from "react";
+import { FC, ReactNode, useRef, useState } from "react";
 import { useAccount } from "wagmi";
 
-import { BulletColors, colorToAction } from "../shared/constants/constants";
+import {
+  BulletColors,
+  colorToAction,
+  gameOverHealthFactor,
+  minBalanceForGame,
+} from "../shared/constants/constants";
 import { useGame } from "../shared/services/game/game.service";
 import { useModal } from "../shared/services/modal";
 import { Balances } from "./Balances";
@@ -24,8 +29,6 @@ interface GuiProps {
   className?: string;
 }
 
-const minBalanceForGame = 0.1;
-
 export const GuiOverlay: FC<GuiProps> = ({ map, className }) => {
   const audio = useRef<HTMLAudioElement | null>(null);
   const { data } = useBalance();
@@ -41,17 +44,16 @@ export const GuiOverlay: FC<GuiProps> = ({ map, className }) => {
     bulletColor,
     isPlaying,
     setIsPlaying,
-    loadGameData,
     borrowRepayPercentage,
     incBRP,
     decBRP,
+    user,
   } = useGame();
 
-  useEffect(() => {
-    signer && loadGameData(signer);
-  }, [signer]);
-
-  const isReadyForGame = +(data?.displayValue || "0") >= minBalanceForGame;
+  const isReadyForGame =
+    +(data?.displayValue || "0") >= minBalanceForGame &&
+    user?.healthFactor &&
+    user.healthFactor >= gameOverHealthFactor;
 
   const beginGame = () => {
     audio.current?.play();
@@ -71,12 +73,25 @@ export const GuiOverlay: FC<GuiProps> = ({ map, className }) => {
       <BlurWrapper modalContent={modal} isShow={!!modal} onClose={() => setModal(null)}>
         {/*Top panel*/}
         <div className="fixed top-0 w-full items-start justify-between flex">
-          {signer && (
+          {signer && user && (
             <div className={"flex gap-12"}>
               <ConnectWallet />
               <GuiCard>
+                <img
+                  className={"w-[50px] h-[50px]"}
+                  src={`https://robohash.org/${user.address}`}
+                  alt="avatar"
+                />
+              </GuiCard>
+              <GuiCard>
                 <p>{`Current action - ${colorToAction[bulletColor]}`}</p>
                 <p>{`Action percentage - ${borrowRepayPercentage}%`}</p>
+              </GuiCard>
+              <GuiCard>
+                <p className={cx({ "!text-red-600": user.healthFactor < gameOverHealthFactor })}>
+                  {`Health factor - ${user.healthFactor.toFixed(2)}`}
+                </p>
+                <p>{`Net worth - ${user.netWorth.toFixed(2)}$`}</p>
               </GuiCard>
             </div>
           )}
@@ -110,7 +125,8 @@ export const GuiOverlay: FC<GuiProps> = ({ map, className }) => {
                   <div className={"bg-white w-full h-[1px] my-2"} />
                   <div className={"max-w-[200px]"}>
                     <span className={"text-sm"}>
-                      * A minimum top up of 0.1 ETH is required to play the game
+                      * A minimum top up of {minBalanceForGame} ETH is required to play the game
+                      <br />* Game over after Health factor below {gameOverHealthFactor}
                     </span>
                   </div>
                 </GuiCard>
@@ -170,11 +186,11 @@ export const GuiOverlay: FC<GuiProps> = ({ map, className }) => {
             </div>
           </div>
         )}
-
-        {error && <ErrorModal error={error} onClose={clearError} />}
-        {loading && !success && <PageLoader />}
-        {success && !loading && <SuccessModal onClose={clearSuccess} />}
       </BlurWrapper>
+
+      {error && <ErrorModal error={error} onClose={clearError} />}
+      {loading && !success && <PageLoader />}
+      {success && !loading && <SuccessModal onClose={clearSuccess} />}
     </div>
   );
 };

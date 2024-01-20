@@ -1,4 +1,4 @@
-export const removeDuplicates = <T extends Record<B, C>, B extends keyof T, C = unknown>(
+export const removeDuplicates = <T extends Record<B, C>, B extends keyof T, C = T[B]>(
   array: T[],
   field: B,
 ): T[] =>

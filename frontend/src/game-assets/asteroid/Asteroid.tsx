@@ -67,9 +67,9 @@ export const Asteroid: FC<RigidBodyProps & AsteroidProps> = ({
 
   if (currentPosition) {
     return (
-      <mesh position={currentPosition}>
-        <boxGeometry />
-        <meshBasicMaterial color={"red"} />
+      <mesh {...props} rotation={[1, 1, 1]} position={currentPosition}>
+        <cylinderGeometry args={[1, 1, 0.3]} />
+        <meshStandardMaterial color={"red"} />
       </mesh>
     );
   }

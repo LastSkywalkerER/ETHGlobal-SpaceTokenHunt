@@ -110,7 +110,7 @@ export const Ship: FC<GroupProps & ShipProps> = ({
   if (!specs) return null;
 
   return (
-    <group {...props} ref={group}>
+    <group {...props} ref={group} position={specs.CURRENT_POSITION}>
       <CameraControls ref={controls} />
 
       <RigidBody

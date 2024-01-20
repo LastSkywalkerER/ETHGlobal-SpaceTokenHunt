@@ -1,8 +1,7 @@
 import { Environment } from "@react-three/drei";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Vector3 } from "three";
 
-import { mockTokens } from "../../shared/constants/mockTokens";
 import { useGame } from "../../shared/services/game/game.service";
 import { useShip } from "../../shared/services/ship.service";
 import { BulletData } from "../../types/game.types";
@@ -21,7 +20,7 @@ export interface ExperienceProps {
 }
 
 export const Experience: FC<ExperienceProps> = ({ downgradedPerformance }) => {
-  const { onShoot, position } = useGame();
+  const { loadGameData, asteroids } = useGame();
   const { shipSpecs } = useShip();
 
   const [bullets, setBullets] = useState<BulletData[]>([]);
@@ -29,8 +28,11 @@ export const Experience: FC<ExperienceProps> = ({ downgradedPerformance }) => {
 
   const { bulletColor } = useGame();
 
+  useEffect(() => {
+    loadGameData();
+  }, []);
+
   const onFire = async (bullet: BulletData) => {
-    await onShoot(bullet);
     setBullets((bullets) => [...bullets, bullet]);
   };
 
@@ -46,14 +48,9 @@ export const Experience: FC<ExperienceProps> = ({ downgradedPerformance }) => {
   return (
     <>
       {shipSpecs && (
-        <Ship
-          downgradedPerformance={downgradedPerformance}
-          onFire={onFire}
-          position={position}
-          specs={shipSpecs}
-        />
+        <Ship downgradedPerformance={downgradedPerformance} onFire={onFire} specs={shipSpecs} />
       )}
-      {mockTokens.map((data, index) => {
+      {asteroids.map((data, index) => {
         const { name, position, logo, address } = data as {
           name: string;
           position: { x: number; y: number; z: number };
@@ -63,7 +60,7 @@ export const Experience: FC<ExperienceProps> = ({ downgradedPerformance }) => {
 
         return (
           <Asteroid
-            key={String(name)}
+            key={index}
             position={new Vector3(position.x, position.y, position.z)}
             id={index}
             address={address}

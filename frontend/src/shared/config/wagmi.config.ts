@@ -2,11 +2,13 @@ import { getDefaultConfig } from "connectkit";
 import { createConfig } from "wagmi";
 import { sepolia } from "wagmi/chains";
 
+import { config } from "./environment.config";
+
 export const wagmiConfig = createConfig(
   getDefaultConfig({
     // Required API Keys
-    infuraId: process.env.INFURA_API_KEY,
-    walletConnectProjectId: process.env.WC_PROJECT_ID!,
+    infuraId: config.INFURA_API_KEY,
+    walletConnectProjectId: config.WC_PROJECT_ID!,
 
     // Required
     appName: "Space ",
