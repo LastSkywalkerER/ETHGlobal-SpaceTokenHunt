@@ -84,7 +84,7 @@ export const Balances: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
       setTokens(data as unknown as TableData[]);
     };
 
-    init;
+    init();
   }, []);
 
   return (

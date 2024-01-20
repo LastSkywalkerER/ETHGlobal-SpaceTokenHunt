@@ -4,29 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="73a0ba74-f0e8-43ed-a541-1c0dd5b7202d" name="Changes" comment="connect add some tokens, fix gui">
-      <change afterPath="$PROJECT_DIR$/src/shared/api/Ship.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shared/api/Tokens.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shared/helpers/Queue.ts" afterDir="false" />
+    <list default="true" id="73a0ba74-f0e8-43ed-a541-1c0dd5b7202d" name="Changes" comment="add game over, connect tokens">
+      <change afterPath="$PROJECT_DIR$/src/gui/Avatar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/RatingBoard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game-assets/asteroid/Asteroid.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/asteroid/Asteroid.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game-assets/experience/Experience.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/experience/Experience.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game-assets/ship/Ship.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/ship/Ship.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/Balances.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Balances.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/GuiOverlay.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/GuiOverlay.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/Modals/ErrorModal/ErrorModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Modals/ErrorModal/ErrorModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/Modals/PageLoader/PageLoader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Modals/PageLoader/PageLoader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/Modals/SuccessModal/SuccessModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Modals/SuccessModal/SuccessModal.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/TopUpWindow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/TopUpWindow.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shared/api/Users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/api/Users.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/config/environment.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/config/environment.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/config/wagmi.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/config/wagmi.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/constants/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/constants/constants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/helpers/removeDuplicates.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/helpers/removeDuplicates.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/hooks/useShipPosition.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/hooks/useShipPosition.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shared/services/game/game.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/services/game/game.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/services/ship.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/services/ship.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/game.types.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/game.types.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,35 +58,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;20.3.0&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;20.3.3&quot;,
-    &quot;last_opened_file_path&quot;: &quot;//wsl$/Ubuntu/root/projects/ETHGlobal-SpaceTokenHunt/frontend/src/shared/api&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.stylelint&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;wsl://Ubuntu@/root/.nvm/versions/node/v18.18.2/bin/node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;\\\\wsl$\\Ubuntu\\root\\projects\\ETHGlobal-SpaceTokenHunt\\frontend\\node_modules\\prettier&quot;,
-    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.TypeScript&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;\\\\wsl$\\Ubuntu\\root\\projects\\ETHGlobal-SpaceTokenHunt\\frontend\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "code.cleanup.on.save": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "javascript.nodejs.core.library.configured.version": "20.3.0",
+    "javascript.nodejs.core.library.typings.version": "20.3.3",
+    "last_opened_file_path": "//wsl$/Ubuntu/root/projects/ETHGlobal-SpaceTokenHunt/frontend/src/gui",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.stylelint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.stylelint": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "wsl://Ubuntu@/root/.nvm/versions/node/v18.18.2/bin/node",
+    "nodejs_package_manager_path": "yarn",
+    "prettierjs.PrettierConfiguration.Package": "\\\\wsl$\\Ubuntu\\root\\projects\\ETHGlobal-SpaceTokenHunt\\frontend\\node_modules\\prettier",
+    "rearrange.code.on.save": "true",
+    "settings.editor.selected.configurable": "preferences.sourceCode.TypeScript",
+    "show.migrate.to.gradle.popup": "false",
+    "ts.external.directory.path": "\\\\wsl$\\Ubuntu\\root\\projects\\ETHGlobal-SpaceTokenHunt\\frontend\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RdControllerToolWindowsLayoutState" isNewUi="true">
     <layout>
       <window_info id="Space Code Reviews" show_stripe_button="false" />
@@ -127,8 +113,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\src\shared\api" />
       <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\src\gui" />
+      <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\src\shared\api" />
       <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\src\shared\helpers" />
       <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\src\shared\services" />
       <recent name="\\wsl$\Ubuntu\root\projects\ETHGlobal-SpaceTokenHunt\frontend\src\shared\constants" />
@@ -196,6 +182,7 @@
       <workItem from="1705687308500" duration="12523000" />
       <workItem from="1705740511743" duration="596000" />
       <workItem from="1705746654165" duration="20748000" />
+      <workItem from="1705782224623" duration="2520000" />
     </task>
     <task id="LOCAL-00001" summary="fix ship collider and bluster shot">
       <option name="closed" value="true" />
@@ -277,7 +264,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705766923371</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="add game over, connect tokens">
+      <option name="closed" value="true" />
+      <created>1705781855692</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1705781855692</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -306,7 +301,8 @@
     <MESSAGE value="connect mock token list to game models" />
     <MESSAGE value="connect aave supply, ship socket" />
     <MESSAGE value="connect add some tokens, fix gui" />
-    <option name="LAST_COMMIT_MESSAGE" value="connect add some tokens, fix gui" />
+    <MESSAGE value="add game over, connect tokens" />
+    <option name="LAST_COMMIT_MESSAGE" value="add game over, connect tokens" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
