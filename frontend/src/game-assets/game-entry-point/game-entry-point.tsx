@@ -14,7 +14,7 @@ import { useSigner } from "@thirdweb-dev/react";
 import { FC, Suspense, useEffect, useState } from "react";
 
 import css from "../../app/index.module.css";
-import { useGame } from "../../shared/services/game.service";
+import { useGame } from "../../shared/services/game/game.service";
 import { useShip } from "../../shared/services/ship.service";
 import { Experience } from "../experience";
 

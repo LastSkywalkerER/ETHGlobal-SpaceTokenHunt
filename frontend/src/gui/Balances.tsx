@@ -1,9 +1,10 @@
 import { useAddress, useBalance, useContract } from "@thirdweb-dev/react";
-import { FC, HTMLAttributes, useEffect, useState } from "react";
+import { FC, HTMLAttributes, ReactNode, useEffect, useState } from "react";
+import { formatUnits } from "viem";
 
 import { ERC20 } from "../shared/constants/ERC20";
+import { mockNative, mockTokens } from "../shared/constants/mockTokens";
 import { GuiCard } from "./GuiCard";
-import { mockNative, mockTokens } from "./mockTokens";
 import { Table, TableConfig } from "./Table";
 
 export const TokenBalance: FC<{ address: string }> = ({ address }) => {
@@ -15,7 +16,14 @@ export const TokenBalance: FC<{ address: string }> = ({ address }) => {
   useEffect(() => {
     if (!contract) return;
 
-    contract.call("balanceOf", [walletAddress]).then((data) => data.then(setBalance));
+    const getBalance = async () => {
+      const decimals = await contract.call("decimals", []);
+      const balance = await contract.call("balanceOf", [walletAddress]);
+
+      setBalance(formatUnits(balance, decimals));
+    };
+
+    getBalance();
   }, [contract]);
 
   return balance;
@@ -35,7 +43,7 @@ export const Balances: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
     },
     {
       accessor: "name",
-      cell: ({ data }) => data,
+      cell: ({ data }) => data as ReactNode,
       header: "name",
     },
     {

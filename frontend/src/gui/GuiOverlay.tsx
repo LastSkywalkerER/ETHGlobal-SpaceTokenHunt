@@ -8,7 +8,7 @@ import { FC, ReactNode, useEffect, useRef, useState } from "react";
 import { useAccount } from "wagmi";
 
 import { BulletColors, colorToAction } from "../shared/constants/constants";
-import { useGame } from "../shared/services/game.service";
+import { useGame } from "../shared/services/game/game.service";
 import { useModal } from "../shared/services/modal";
 import { Balances } from "./Balances";
 import { BlurWrapper } from "./BlurWrapper";

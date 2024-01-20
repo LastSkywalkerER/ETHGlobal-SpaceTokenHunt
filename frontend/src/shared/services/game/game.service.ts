@@ -1,11 +1,14 @@
-import { Signer } from "ethers";
+import { Contract, Signer } from "ethers";
 import { Vector3 } from "three";
+import { formatUnits } from "viem";
+import { erc20ABI } from "wagmi";
 import { create } from "zustand";
 
-import { BulletData } from "../../types/game.types";
-import { Users } from "../api/Users";
-import { asteroids } from "../constants";
-import { BulletColors } from "../constants/constants";
+import { BulletData } from "../../../types/game.types";
+import { Users } from "../../api/Users";
+import { asteroids } from "../../constants";
+import { BulletActions, BulletColors } from "../../constants/constants";
+import { bulletNameToAction } from "./hitActions";
 
 type Game = {
   isPlaying: boolean;
@@ -22,7 +25,14 @@ type Game = {
   onShoot: (bullet: BulletData) => void;
   onHit: (
     signer: Signer,
-    data: { hitPosition: Vector3; etherId: number; bulletId: number },
+    data: {
+      hitPosition: Vector3;
+      etherId: number;
+      bulletId: number;
+      name: string;
+      address: string;
+      action: BulletActions;
+    },
   ) => Promise<void>;
   loadGameData: (signer: Signer) => Promise<void>;
   setBulletColor: (color: BulletColors) => void;
@@ -33,7 +43,7 @@ type Game = {
   setIsPlaying: (isPlaying: boolean) => void;
 };
 
-export const useGame = create<Game>()((set) => ({
+export const useGame = create<Game>()((set, get) => ({
   isPlaying: false,
   bullets: 0,
   usedBullets: {},
@@ -50,7 +60,7 @@ export const useGame = create<Game>()((set) => ({
     }));
   },
 
-  init: async (signer: Signer) => {
+  init: async (signer) => {
     const generatedEthers = asteroids.map(([x, y, z]) => new Vector3(x, y, z));
     const ethers = generatedEthers.map((position, index) => ({
       id: index,
@@ -89,10 +99,20 @@ export const useGame = create<Game>()((set) => ({
       usedBullets: { ...state.usedBullets, [bullet.id]: bullet },
     }));
   },
-  onHit: async (
-    signer: Signer,
-    { etherId }: { hitPosition: Vector3; etherId: number; bulletId: number },
-  ) => {
+  onHit: async (signer, { etherId, action, address }) => {
+    const { borrowRepayPercentage } = get();
+
+    let amount = 0;
+
+    if (action === BulletActions.Supply) {
+      const tokenContract = new Contract(address, erc20ABI, signer);
+      const decimals = await tokenContract.decimals();
+      amount = await tokenContract.balanceOf(await signer.getAddress());
+      amount = (+formatUnits(amount as unknown as bigint, decimals) * borrowRepayPercentage) / 100;
+    }
+
+    bulletNameToAction[action]({ signer, amount: String(amount), tokenAddress: address });
+
     set((state) => ({
       ...state,
       ethers: state.ethers.filter(({ id }) => id !== etherId),

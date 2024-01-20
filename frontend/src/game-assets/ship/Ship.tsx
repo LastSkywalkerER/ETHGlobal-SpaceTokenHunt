@@ -8,6 +8,7 @@ import * as THREE from "three";
 import { Group } from "three";
 
 import { Controls } from "../../shared/constants";
+import { useShipPosition } from "../../shared/hooks/useShipPosition";
 import { BulletData, ShipSpecs } from "../../types/game.types";
 import { CustomFbxLoader } from "../customObject";
 import { shipAssets2 } from "./asssets";
@@ -41,11 +42,16 @@ export const Ship: FC<GroupProps & ShipProps> = ({
   const right = useKeyboardControls<Controls>((state) => state.right);
   const fire = useKeyboardControls<Controls>((state) => state.fire);
 
+  const { sendShipPosition } = useShipPosition();
+
   useFrame(() => {
+    // Safe ship position before everything
+
     if (!specs) return;
     const { FIRE_RATE, MOVE_ANGLE_SPEED, MOVE_SPEED } = specs;
 
     if (!rigidbody.current) return;
+    sendShipPosition(rigidbody.current.translation());
 
     // CAMERA FOLLOW
     if (controls.current) {

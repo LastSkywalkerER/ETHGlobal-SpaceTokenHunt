@@ -1,6 +1,6 @@
 import { FC, ReactNode } from "react";
 
-export type DataType = string | number;
+export type DataType = string | number | Record<string, string | number>;
 
 export interface TableConfig {
   accessor: string;
