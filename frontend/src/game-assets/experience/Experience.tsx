@@ -3,7 +3,7 @@ import { FC, useState } from "react";
 import { Vector3 } from "three";
 
 import { mockTokens } from "../../shared/constants/mockTokens";
-import { useGame } from "../../shared/services/game.service";
+import { useGame } from "../../shared/services/game/game.service";
 import { useShip } from "../../shared/services/ship.service";
 import { BulletData } from "../../types/game.types";
 import { Asteroid } from "../asteroid";

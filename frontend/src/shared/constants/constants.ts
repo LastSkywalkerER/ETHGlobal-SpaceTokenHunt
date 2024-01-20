@@ -1,10 +1,15 @@
+import { providers } from "ethers";
+
 import { config } from "../config/environment.config";
 
 export const baseURL = "http://ethdev.online:3002";
+
+// for Sepolia
 export const rpcUrl = `https://sepolia.infura.io/v3/${config.INFURA_API_KEY}`;
-export const gameLogicAddress = "0x98c86DFB5f548b41513ac65243592A7A6B554940";
-export const gameRegistryAddress = "0x51b51050114f33D0B6c96153800fE7aE0dB3A0F3";
-export const shipAddress = "0x398Ff2d0701da78F3B9037BC45F385f14c5b7Da7";
+
+export const provider = new providers.JsonRpcProvider(rpcUrl);
+export const poolAddress = "0x6Ae43d3271ff6888e7Fc43Fd7321a503ff738951";
+export const wethGatewayAddress = "0x387d311e47e80b498169e6fb51d3193167d89f7d";
 
 export enum BulletColors {
   Green = "#86ff00",

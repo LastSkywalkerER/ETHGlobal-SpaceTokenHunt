@@ -1,5 +1,7 @@
 "use client";
 
+import "reflect-metadata";
+
 import { KeyboardControlsEntry } from "@react-three/drei";
 import { Sepolia } from "@thirdweb-dev/chains";
 import { embeddedWallet, ThirdwebProvider } from "@thirdweb-dev/react";

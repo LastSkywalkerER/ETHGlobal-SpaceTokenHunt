@@ -9,7 +9,7 @@ import { useSigner } from "@thirdweb-dev/react";
 import { FC, useRef, useState } from "react";
 import { Vector3 } from "three";
 
-import { useGame } from "../../shared/services/game.service";
+import { useGame } from "../../shared/services/game/game.service";
 import { BulletUserData } from "../Bullet";
 import { Coin } from "../coin";
 
