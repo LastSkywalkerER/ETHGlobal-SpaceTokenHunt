@@ -1,3 +1,4 @@
+import { UiPoolDataProvider, ChainId } from '@aave/contract-helpers';
 import { Injectable } from '@nestjs/common';
 import { ContractInterface, ethers, utils } from 'ethers';
 import {
@@ -7,6 +8,7 @@ import {
 
 import { abi } from '../abis/abi';
 import { VerifyMessageParameters } from '../sdk-interfaces';
+
 @Injectable()
 export class BlockchainEthSdk {
   protected provider: ethers.providers.JsonRpcProvider;
@@ -29,6 +31,20 @@ export class BlockchainEthSdk {
     this.interface = new ethers.utils.Interface(JSON.stringify(this.abi));
   }
 
+  public async getTokensInfo() {
+    const poolDataProviderContract = new UiPoolDataProvider({
+      uiPoolDataProviderAddress: '0x69529987FA4A075D0C00B0128fa848dc9ebbE9CE',
+      provider: this.provider,
+      chainId: ChainId.sepolia,
+    });
+
+    const reserves = await poolDataProviderContract.getReservesHumanized({
+      lendingPoolAddressProvider: '0x012bAC54348C0E635dCAc9D5FB99f06F24136C9A',
+    });
+
+    return reserves.reservesData;
+  }
+
   public async getBlockchainData(address: string) {
     const data = await this.contract['getUserAccountData(address)'](address);
 
@@ -43,6 +59,8 @@ export class BlockchainEthSdk {
         ethers.utils.formatUnits(data.totalCollateralBase, 8),
       ),
       borrowBalance: Number(ethers.utils.formatUnits(data.totalDebtBase, 8)),
+      availableBorrowsBase:
+        Number(ethers.utils.formatUnits(data.availableBorrowsBase, 8)) * 0.99,
     };
   }
 

@@ -14,4 +14,10 @@ export class TokenController {
   async getTokens(@User() user: CurrentUser) {
     return await this.tokenService.getTokens({ userId: user.userUuid });
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Get(apiConfig.token.getTokensInfo)
+  async getTokensInfo(@User() user: CurrentUser) {
+    return await this.tokenService.getTokensInfo({ userId: user.userUuid });
+  }
 }

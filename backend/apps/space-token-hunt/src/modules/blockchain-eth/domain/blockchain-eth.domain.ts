@@ -1,9 +1,9 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 
 import { BLOCKCHAIN_ETH_SDK_TOKEN } from '../core/tokens';
+import { BlockchainEthSdk } from '../infrastructure/sdk';
 
 import { VerifyMessageParameters } from './blockchain-eth.domain-type';
-import { BlockchainEthSdk } from '../infrastructure/sdk';
 
 @Injectable()
 export class BlockchainEthDomain {
@@ -24,5 +24,9 @@ export class BlockchainEthDomain {
 
   public async getBlockchainData(address: string) {
     return this.blockchainEthSdk.getBlockchainData(address);
+  }
+
+  public async getTokensInfo() {
+    return this.blockchainEthSdk.getTokensInfo();
   }
 }

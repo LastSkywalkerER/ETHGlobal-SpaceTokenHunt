@@ -15,6 +15,7 @@ export const apiConfig = {
   },
   token: {
     getTokens: `${basePath}/tokens`,
+    getTokensInfo: `${basePath}/tokens-info`,
   },
   ship: {
     getCurrentUserShipPosition: `${basePath}/ship-position`,
