@@ -1,5 +1,7 @@
 import { UiPoolDataProvider, ChainId } from '@aave/contract-helpers';
 import { Injectable } from '@nestjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { ThirdwebSDK } from '@thirdweb-dev/sdk';
 import { ContractInterface, ethers, utils } from 'ethers';
 import {
   BadRequestException,
@@ -17,7 +19,7 @@ export class BlockchainEthSdk {
   protected abi: ContractInterface;
   protected interface: ethers.utils.Interface;
 
-  constructor() {
+  constructor(private eventEmitter: EventEmitter2) {
     this.provider = new ethers.providers.JsonRpcProvider(
       'https://ethereum-sepolia.publicnode.com',
     );
@@ -29,6 +31,16 @@ export class BlockchainEthSdk {
       this.provider,
     );
     this.interface = new ethers.utils.Interface(JSON.stringify(this.abi));
+    this.subscribeToExistingContracts();
+  }
+
+  private async subscribeToExistingContracts() {
+    const sdk = new ThirdwebSDK('sepolia');
+    const contract = await sdk.getContract(this.contractAddress, this.abi);
+
+    contract.events.listenToAllEvents(async (event) => {
+      this.eventEmitter.emit('Update', event);
+    });
   }
 
   public async getTokensInfo() {

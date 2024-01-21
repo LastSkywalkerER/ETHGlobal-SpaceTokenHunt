@@ -28,4 +28,8 @@ export class UserService {
       netWorth: data.netWorth,
     };
   }
+
+  public async getUserByAdress(address: string) {
+    return await this.userDomain.getUserByAdress({ address });
+  }
 }

@@ -8,14 +8,22 @@ import { UserDomain } from './domain';
 import { UserEntity } from './infrastructure/entities/user.entity';
 import { UserRepository } from './infrastructure/repositories/user.repository';
 import { UserController } from './presentation/user.controller';
+import { UserGateway } from './user.gateway';
+import { UserEventHandler } from './user.handler';
 
 @Module({
   controllers: [UserController],
-  exports: [UserDomain],
+  exports: [UserDomain, UserGateway, UserEventHandler],
   imports: [
     TypeOrmModule.forFeature([UserEntity]),
     forwardRef(() => BlockchainEthModule),
   ],
-  providers: [UserService, UserDomain, UserRepository],
+  providers: [
+    UserService,
+    UserDomain,
+    UserRepository,
+    UserGateway,
+    UserEventHandler,
+  ],
 })
 export class UserModule {}
