@@ -27,8 +27,16 @@ export class CryptoAuthController {
     @Res() res: Response,
   ): Promise<any> {
     const tokens = await this.cryptoAuthService.verifyMessage(verifyMessageDto);
-    res.cookie('accessToken', tokens.accessToken, { httpOnly: true });
-    res.cookie('refreshToken', tokens.refreshToken, { httpOnly: true });
+    res.cookie('accessToken', tokens.accessToken, {
+      httpOnly: true,
+      sameSite: 'none',
+      secure: true,
+    });
+    res.cookie('refreshToken', tokens.refreshToken, {
+      httpOnly: true,
+      sameSite: 'none',
+      secure: true,
+    });
 
     res.json({
       success: true,
@@ -41,8 +49,16 @@ export class CryptoAuthController {
     const refreshToken = cookies.refreshToken;
     const tokens = await this.cryptoAuthService.refreshTokens(refreshToken);
 
-    res.cookie('accessToken', tokens.accessToken, { httpOnly: true });
-    res.cookie('refreshToken', tokens.refreshToken, { httpOnly: true });
+    res.cookie('accessToken', tokens.accessToken, {
+      httpOnly: true,
+      sameSite: 'none',
+      secure: true,
+    });
+    res.cookie('refreshToken', tokens.refreshToken, {
+      httpOnly: true,
+      sameSite: 'none',
+      secure: true,
+    });
 
     res.json({
       success: true,
