@@ -1,6 +1,4 @@
 import { axios } from "../config/axios.config";
-import { createCoordinate } from "../constants";
-import { removeDuplicates } from "../helpers/removeDuplicates";
 
 export interface TokenData {
   address: string;
@@ -9,17 +7,25 @@ export interface TokenData {
   position: { x: number; y: number; z: number };
 }
 
+export interface TokenFullData {
+  address: string;
+  logo: string;
+  name: string;
+  balance: string;
+  avaliable: string;
+  debt: string;
+}
+
 export const mockNativeAddress = "0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF";
 
-export const mockNativeData: TokenData = {
+// TODO: Figure out how to supply ETH directly
+export const mockNativeData: TokenFullData = {
   logo: "https://purple-eldest-crayfish-220.mypinata.cloud/ipfs/QmZQDUtnCAaYtPAZiVFpbhfZkYEtacKJkctS73HREb33vG/eth.png",
   name: "ETH",
   address: mockNativeAddress,
-  position: {
-    x: createCoordinate(),
-    y: 1,
-    z: createCoordinate(),
-  },
+  avaliable: "",
+  balance: "",
+  debt: "",
 };
 
 export class Tokens {
@@ -30,8 +36,8 @@ export class Tokens {
   }
 
   public static async getGuiTokens() {
-    const response = await axios.get<TokenData[]>("/api/v1/tokens");
+    const response = await axios.get<TokenFullData[]>("/api/v1/tokens-info");
 
-    return [mockNativeData, ...removeDuplicates(response.data, "address")];
+    return [mockNativeData, ...response.data];
   }
 }

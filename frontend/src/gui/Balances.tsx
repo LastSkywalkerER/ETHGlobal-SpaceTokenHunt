@@ -28,12 +28,12 @@ export const TokenBalance: FC<{ address: string }> = ({ address }) => {
     getBalance();
   }, [contract]);
 
-  return balance;
+  return Number(balance).toFixed(2);
 };
 export const NativeBalance: FC = () => {
   const { data } = useBalance();
 
-  return data?.displayValue || "0";
+  return Number(data?.displayValue || "0").toFixed(2);
 };
 
 const config: TableConfig[] = [
@@ -59,17 +59,17 @@ const config: TableConfig[] = [
   },
   {
     accessor: "balance",
-    cell: ({ data }) => data as ReactNode,
+    cell: ({ data }) => Number(data || "0").toFixed(2) as ReactNode,
     header: "Balance",
   },
   {
-    accessor: "available",
-    cell: ({ data }) => data as ReactNode,
+    accessor: "avaliable",
+    cell: ({ data }) => Number(data || "0").toFixed(2) as ReactNode,
     header: "Available",
   },
   {
     accessor: "debt",
-    cell: ({ data }) => data as ReactNode,
+    cell: ({ data }) => Number(data || "0").toFixed(2) as ReactNode,
     header: "Debt",
   },
 ];

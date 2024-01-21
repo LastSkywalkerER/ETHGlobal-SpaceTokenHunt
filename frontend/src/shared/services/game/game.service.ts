@@ -9,7 +9,7 @@ import { TokenData, Tokens } from "../../api/Tokens";
 import { UserData, Users } from "../../api/Users";
 import { BulletActions, BulletColors, gameOverHealthFactor } from "../../constants/constants";
 import { useModal } from "../modal";
-import { bulletNameToAction } from "./hitActions";
+import { amountFieldToAction, bulletNameToAction } from "./hitActions";
 
 type Game = {
   isPlaying: boolean;
@@ -90,7 +90,7 @@ export const useGame = create<Game>()((set, get) => ({
     try {
       const { borrowRepayPercentage } = get();
 
-      let amount = 1;
+      let amount = 0;
 
       if (action === BulletActions.Supply) {
         const tokenContract = new Contract(address, erc20ABI, signer);
@@ -99,8 +99,16 @@ export const useGame = create<Game>()((set, get) => ({
         amount =
           (+formatUnits(amount as unknown as bigint, decimals) * borrowRepayPercentage) / 100;
       } else {
-        // TODO: Get amount according to available or dept field
-        amount = amount * borrowRepayPercentage;
+        const currentTokensInfo = await Tokens.getGuiTokens();
+
+        const tokenInfo = currentTokensInfo.find(
+          ({ address: tokenAddress }) => address === tokenAddress,
+        );
+
+        if (tokenInfo) {
+          amount = +(tokenInfo as unknown as Record<string, string>)[amountFieldToAction[action]];
+          amount = (amount * borrowRepayPercentage) / 100;
+        }
       }
 
       await bulletNameToAction[action]({
