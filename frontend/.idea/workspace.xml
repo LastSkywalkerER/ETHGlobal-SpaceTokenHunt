@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="73a0ba74-f0e8-43ed-a541-1c0dd5b7202d" name="Changes" comment="add rating board">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/GuiOverlay.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/GuiOverlay.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/Modals/ErrorModal/ErrorModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Modals/ErrorModal/ErrorModal.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="73a0ba74-f0e8-43ed-a541-1c0dd5b7202d" name="Changes" comment="remove hard game stopping" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -177,7 +173,7 @@
       <workItem from="1705687308500" duration="12523000" />
       <workItem from="1705740511743" duration="596000" />
       <workItem from="1705746654165" duration="20748000" />
-      <workItem from="1705782224623" duration="3941000" />
+      <workItem from="1705782224623" duration="4002000" />
     </task>
     <task id="LOCAL-00001" summary="fix ship collider and bluster shot">
       <option name="closed" value="true" />
@@ -275,7 +271,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705785128102</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="remove hard game stopping">
+      <option name="closed" value="true" />
+      <created>1705786271172</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1705786271172</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -306,7 +310,8 @@
     <MESSAGE value="connect add some tokens, fix gui" />
     <MESSAGE value="add game over, connect tokens" />
     <MESSAGE value="add rating board" />
-    <option name="LAST_COMMIT_MESSAGE" value="add rating board" />
+    <MESSAGE value="remove hard game stopping" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove hard game stopping" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

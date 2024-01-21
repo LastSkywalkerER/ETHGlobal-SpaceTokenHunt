@@ -12,6 +12,7 @@ export const useShipPosition = () => {
     if (!user || shipSocket.current) return;
 
     shipSocket.current = io(`${baseURL}/ship`, {
+      withCredentials: true,
       transports: ["websocket"],
       query: {
         userUuid: user.uuid,
