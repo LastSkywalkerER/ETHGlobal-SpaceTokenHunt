@@ -27,9 +27,18 @@ Recognizing these educational challenges, the team member was inspired to create
 
 # Gameplay
 
+![2024-01-21_123510](https://github.com/LastSkywalkerER/ETHGlobal-SpaceTokenHunt/assets/156608212/d143c833-11aa-4668-bfe9-6b1016609663)
+
+
 The proposed game begins with the player selecting an initial asset to deposit as their starting balance as well as native cryptocurrency, to pay for transactions.. This balance, represented in a chosen token, sets the limit for their in-game wallet expenditure. However, it's crucial to note that these assets are not immediately provided as collateral; they merely constitute the player's balance.
 
-As the player navigates the game, they encounter various "bubbles" representing different tockens, they can be providing as a collateral or taking as a loans. Players use four types of laser shots to interact with these tokens: one color for collateralizing a token (opening a deposit), another for borrowing the token, a third to repay the loan and a fourth to withdraw the deposit..
+![2024-01-21_124908](https://github.com/LastSkywalkerER/ETHGlobal-SpaceTokenHunt/assets/156608212/4ff23dbe-e475-469d-a9f7-87a0a5655a63)
+
+
+As the player navigates the game, they encounter various "bubbles" representing different tockens, they can be providing as a collateral or taking as a loans. Players use four types of laser shots to interact with these tokens: one color for collateralizing a token (opening a deposit), another for borrowing the token, a third to repay the loan and a fourth to withdraw the deposit.
+
+![2024-01-21_130330](https://github.com/LastSkywalkerER/ETHGlobal-SpaceTokenHunt/assets/156608212/2ea092c1-858e-48ec-9ad9-05543c51aa75)
+
 
 A key aspect of the gameplay involves matching the asset type: if the player attempts to provide an asset different from their initial deposit, an error message indicates that they cannot use this asset for collateral. Similarly, attempting to take a loan without first providing collateral also results in an error.
 
