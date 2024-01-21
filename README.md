@@ -46,6 +46,9 @@ The correct initial action for the player is to find and interact with a token t
 
 Once the player has provided collateral, they can start taking loans by shooting at bubbles representing different loanable assets. Since they have collateral in place, they can now borrow any asset. After acquiring a loaned asset, the player can opt to provide it back as collateral, enabling a strategy to build a "liquidity pyramid."
 
+![2024-01-21_134104](https://github.com/LastSkywalkerER/ETHGlobal-SpaceTokenHunt/assets/156608212/308c2534-8765-4415-ab2f-3b8633d22eff)
+
+
 To bring variety and strategic depth to the gameplay, bubbles can be differentiated not only by asset type but also by percentage of assets, for example, the user can customize the size of the interaction by setting the percentage of available assets. This feature will allow players to fine tune their strategies and manage their portfolio.
 
 The game's core challenge is maintaining a healthy Health Factor, which decreases with each borrowed asset. If the Health Factor approaches or falls below 1.5, the game ends, and the player's spaceship is destroyed. The game concludes with a summary of the player's impact on the total value locked (TVL) in DeFi, illustrating how they increased their portfolio through various borrowing and collateral actions, thereby contributing to the DeFi liquidity pyramid.
