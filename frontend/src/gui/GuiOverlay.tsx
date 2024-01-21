@@ -73,6 +73,13 @@ export const GuiOverlay: FC<GuiProps> = ({ map, className }) => {
 
   return (
     <div className={cx("absolute top-0 right-0 bottom-0 left-0 w-full h-full z-10", className)}>
+      {/*Backgound*/}
+      {!isPlaying && (
+        <div className={"absolute top-0 left-0 w-full h-full"}>
+          <img className={"w-full h-full object-cover opacity-50"} src="./bg.png" alt="bg" />
+        </div>
+      )}
+
       <BlurWrapper modalContent={modal} isShow={!!modal} onClose={() => setModal(null)}>
         {/*Top panel*/}
         <div className="fixed top-0 w-full items-start justify-between flex">
@@ -149,7 +156,7 @@ export const GuiOverlay: FC<GuiProps> = ({ map, className }) => {
                 </GuiCard>
               </div>
             ) : (
-              <ConnectWallet btnTitle={"Login"} />
+              <ConnectWallet className={"z-50"} btnTitle={"Login"} />
             )}
           </div>
         )}
