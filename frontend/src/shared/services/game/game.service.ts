@@ -99,6 +99,7 @@ export const useGame = create<Game>()((set, get) => ({
         amount =
           (+formatUnits(amount as unknown as bigint, decimals) * borrowRepayPercentage) / 100;
       } else {
+        // TODO: Get amount according to available or dept field
         amount = amount * borrowRepayPercentage;
       }
 

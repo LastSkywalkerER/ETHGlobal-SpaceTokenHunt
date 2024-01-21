@@ -2,6 +2,7 @@ import React from "react";
 
 import { GuiButton } from "../../GuiButton";
 import { GuiCard } from "../../GuiCard";
+import { aaveErrorMessages } from "./aaveErrorMapping";
 import { ModalProps } from "./types";
 
 const ErrorModal: React.FC<ModalProps> = ({ error, onClose }) => {
@@ -44,6 +45,14 @@ const ErrorModal: React.FC<ModalProps> = ({ error, onClose }) => {
             ))}
         </>
       );
+    }
+
+    const aaveCode =
+      "Execution reverted: 36".includes("Execution reverted: ") &&
+      parseInt("Execution reverted: 36".replace("Execution reverted: ", ""));
+
+    if (aaveCode) {
+      return aaveErrorMessages[aaveCode];
     }
 
     return capitalizeFirstLetter(error.message || "Something went wrong");

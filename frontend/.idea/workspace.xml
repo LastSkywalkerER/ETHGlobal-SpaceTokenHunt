@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="73a0ba74-f0e8-43ed-a541-1c0dd5b7202d" name="Changes" comment="add background">
+    <list default="true" id="73a0ba74-f0e8-43ed-a541-1c0dd5b7202d" name="Changes" comment="add background, fix request order">
+      <change afterPath="$PROJECT_DIR$/src/gui/Modals/ErrorModal/aaveErrorMapping.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game-assets/experience/Experience.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/experience/Experience.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game-assets/game-entry-point/game-entry-point.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/game-entry-point/game-entry-point.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game-assets/ship/Ship.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/ship/Ship.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/Modals/ErrorModal/ErrorModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Modals/ErrorModal/ErrorModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/services/game/game.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/services/game/game.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +179,7 @@
       <workItem from="1705740511743" duration="596000" />
       <workItem from="1705746654165" duration="20748000" />
       <workItem from="1705782224623" duration="4002000" />
-      <workItem from="1705823452190" duration="2287000" />
+      <workItem from="1705823452190" duration="4485000" />
     </task>
     <task id="LOCAL-00001" summary="fix ship collider and bluster shot">
       <option name="closed" value="true" />
@@ -301,7 +301,39 @@
       <option name="project" value="LOCAL" />
       <updated>1705825809576</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="add background, fix request order">
+      <option name="closed" value="true" />
+      <created>1705826855055</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1705826855055</updated>
+    </task>
+    <task id="LOCAL-00017" summary="add background, fix request order">
+      <option name="closed" value="true" />
+      <created>1705826865992</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1705826865992</updated>
+    </task>
+    <task id="LOCAL-00018" summary="add background, fix request order">
+      <option name="closed" value="true" />
+      <created>1705826873862</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1705826873862</updated>
+    </task>
+    <task id="LOCAL-00019" summary="add background, fix request order">
+      <option name="closed" value="true" />
+      <created>1705826943289</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1705826943289</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -335,7 +367,8 @@
     <MESSAGE value="remove hard game stopping" />
     <MESSAGE value="fix cookie" />
     <MESSAGE value="add background" />
-    <option name="LAST_COMMIT_MESSAGE" value="add background" />
+    <MESSAGE value="add background, fix request order" />
+    <option name="LAST_COMMIT_MESSAGE" value="add background, fix request order" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
