@@ -27,31 +27,40 @@ Recognizing these educational challenges, the team member was inspired to create
 
 # Gameplay
 
-![2024-01-21_123510](https://github.com/LastSkywalkerER/ETHGlobal-SpaceTokenHunt/assets/156608212/d143c833-11aa-4668-bfe9-6b1016609663)
+![2024-01-21_123510](https://github.com/LastSkywalkerER/ETHGlobal-SpaceTokenHunt/assets/156608212/1023622b-da6a-41a8-9c7c-7832a1a6c041)
 
 
 The proposed game begins with the player selecting an initial asset to deposit as their starting balance as well as native cryptocurrency, to pay for transactions.. This balance, represented in a chosen token, sets the limit for their in-game wallet expenditure. However, it's crucial to note that these assets are not immediately provided as collateral; they merely constitute the player's balance.
 
-![2024-01-21_124908](https://github.com/LastSkywalkerER/ETHGlobal-SpaceTokenHunt/assets/156608212/4ff23dbe-e475-469d-a9f7-87a0a5655a63)
+![2024-01-21_124908](https://github.com/LastSkywalkerER/ETHGlobal-SpaceTokenHunt/assets/156608212/58adfc94-5226-4ea4-82ef-25ab9f2a3f84)
 
 
 As the player navigates the game, they encounter various "bubbles" representing different tockens, they can be providing as a collateral or taking as a loans. Players use four types of laser shots to interact with these tokens: one color for collateralizing a token (opening a deposit), another for borrowing the token, a third to repay the loan and a fourth to withdraw the deposit.
 
-![2024-01-21_130330](https://github.com/LastSkywalkerER/ETHGlobal-SpaceTokenHunt/assets/156608212/2ea092c1-858e-48ec-9ad9-05543c51aa75)
+
+![2024-01-21_125054](https://github.com/LastSkywalkerER/ETHGlobal-SpaceTokenHunt/assets/156608212/4e6a8ab0-06eb-432b-bb73-5691af09cee3)
 
 
 A key aspect of the gameplay involves matching the asset type: if the player attempts to provide an asset different from their initial deposit, an error message indicates that they cannot use this asset for collateral. Similarly, attempting to take a loan without first providing collateral also results in an error.
+
+![2024-01-21_132106](https://github.com/LastSkywalkerER/ETHGlobal-SpaceTokenHunt/assets/156608212/1eb914a0-cb3c-4960-99c5-37bc8784dc31)
 
 The correct initial action for the player is to find and interact with a token that matches the asset they initially deposited. Upon successfully shooting this bubble, the player's balance is provided as collateral to a smart contract, activating key parameters like the Health Factor and Net worth, which are displayedon head of screen.
 
 Once the player has provided collateral, they can start taking loans by shooting at bubbles representing different loanable assets. Since they have collateral in place, they can now borrow any asset. After acquiring a loaned asset, the player can opt to provide it back as collateral, enabling a strategy to build a "liquidity pyramid."
 
-![2024-01-21_134104](https://github.com/LastSkywalkerER/ETHGlobal-SpaceTokenHunt/assets/156608212/308c2534-8765-4415-ab2f-3b8633d22eff)
+
+![2024-01-21_132932](https://github.com/LastSkywalkerER/ETHGlobal-SpaceTokenHunt/assets/156608212/e5fe6198-be00-461b-9e6e-ff6f16918ce4)
+
 
 
 To bring variety and strategic depth to the gameplay, bubbles can be differentiated not only by asset type but also by percentage of assets, for example, the user can customize the size of the interaction by setting the percentage of available assets. This feature will allow players to fine tune their strategies and manage their portfolio.
 
 The game's core challenge is maintaining a healthy Health Factor, which decreases with each borrowed asset. If the Health Factor approaches or falls below 1.5, the game ends, and the player's spaceship is destroyed. The game concludes with a summary of the player's impact on the total value locked (TVL) in DeFi, illustrating how they increased their portfolio through various borrowing and collateral actions, thereby contributing to the DeFi liquidity pyramid.
+
+![2024-01-21_134104](https://github.com/LastSkywalkerER/ETHGlobal-SpaceTokenHunt/assets/156608212/f73fada9-7f78-4ee3-8d67-48979821c01a)
+
+
 
 The game could feature multiple modes, including an educational mode, and a real mode, where each action might constitute an actual transaction in the DeFi ecosystem. This diversity in gameplay modes offers varying levels of engagement and learning opportunities for players with different levels of familiarity with DeFi concepts.
 
