@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="73a0ba74-f0e8-43ed-a541-1c0dd5b7202d" name="Changes" comment="fix cookie">
-      <change afterPath="$PROJECT_DIR$/public/bg.png" afterDir="false" />
+    <list default="true" id="73a0ba74-f0e8-43ed-a541-1c0dd5b7202d" name="Changes" comment="add background">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/GuiOverlay.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/GuiOverlay.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/experience/Experience.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/experience/Experience.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/game-entry-point/game-entry-point.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/game-entry-point/game-entry-point.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-assets/ship/Ship.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-assets/ship/Ship.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +179,7 @@
       <workItem from="1705740511743" duration="596000" />
       <workItem from="1705746654165" duration="20748000" />
       <workItem from="1705782224623" duration="4002000" />
-      <workItem from="1705823452190" duration="1191000" />
+      <workItem from="1705823452190" duration="2287000" />
     </task>
     <task id="LOCAL-00001" summary="fix ship collider and bluster shot">
       <option name="closed" value="true" />
@@ -292,7 +293,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705823670399</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="add background">
+      <option name="closed" value="true" />
+      <created>1705825809576</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1705825809576</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -325,7 +334,8 @@
     <MESSAGE value="add rating board" />
     <MESSAGE value="remove hard game stopping" />
     <MESSAGE value="fix cookie" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix cookie" />
+    <MESSAGE value="add background" />
+    <option name="LAST_COMMIT_MESSAGE" value="add background" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -9,6 +9,7 @@ import { Group } from "three";
 
 import { Controls } from "../../shared/constants";
 import { useShipPosition } from "../../shared/hooks/useShipPosition";
+import { useGame } from "../../shared/services/game/game.service";
 import { BulletData, ShipSpecs } from "../../types/game.types";
 import { CustomFbxLoader } from "../customObject";
 import { shipAssets2 } from "./asssets";
@@ -43,6 +44,11 @@ export const Ship: FC<GroupProps & ShipProps> = ({
   const fire = useKeyboardControls<Controls>((state) => state.fire);
 
   const { sendShipPosition } = useShipPosition();
+  const { loadGameData } = useGame();
+
+  useEffect(() => {
+    loadGameData();
+  }, []);
 
   useFrame(() => {
     // Safe ship position before everything

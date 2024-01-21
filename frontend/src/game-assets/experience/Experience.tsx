@@ -20,16 +20,14 @@ export interface ExperienceProps {
 }
 
 export const Experience: FC<ExperienceProps> = ({ downgradedPerformance }) => {
-  const { loadGameData, asteroids } = useGame();
-  const { shipSpecs } = useShip();
+  const { asteroids, bulletColor } = useGame();
+  const { shipSpecs, loadShipSpecs } = useShip();
 
   const [bullets, setBullets] = useState<BulletData[]>([]);
   const [hits, setHits] = useState<Hit[]>([]);
 
-  const { bulletColor } = useGame();
-
   useEffect(() => {
-    loadGameData();
+    loadShipSpecs();
   }, []);
 
   const onFire = async (bullet: BulletData) => {

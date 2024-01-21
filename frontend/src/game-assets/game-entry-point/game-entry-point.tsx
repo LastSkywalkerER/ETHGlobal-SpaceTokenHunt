@@ -15,7 +15,6 @@ import { FC, Suspense, useEffect, useState } from "react";
 
 import css from "../../app/index.module.css";
 import { useGame } from "../../shared/services/game/game.service";
-import { useShip } from "../../shared/services/ship.service";
 import { Experience } from "../experience";
 
 export interface GameProps {
@@ -24,13 +23,11 @@ export interface GameProps {
 
 export const GameEntryPoint: FC<GameProps> = ({ map }) => {
   const { isPlaying, init } = useGame();
-  const { loadShipSpecs } = useShip();
   const signer = useSigner();
   const [downgradedPerformance] = useState(false);
 
   useEffect(() => {
     signer && init(signer);
-    loadShipSpecs();
   }, [signer]);
 
   return (
