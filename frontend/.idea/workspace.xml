@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="73a0ba74-f0e8-43ed-a541-1c0dd5b7202d" name="Changes" comment="add aave errors">
+    <list default="true" id="73a0ba74-f0e8-43ed-a541-1c0dd5b7202d" name="Changes" comment="update open graph">
+      <change beforePath="$PROJECT_DIR$/../backend/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/docker-compose.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/Modals/ErrorModal/ErrorModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Modals/ErrorModal/ErrorModal.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +178,7 @@
       <workItem from="1705740511743" duration="596000" />
       <workItem from="1705746654165" duration="20748000" />
       <workItem from="1705782224623" duration="4002000" />
-      <workItem from="1705823452190" duration="5335000" />
+      <workItem from="1705823452190" duration="8943000" />
     </task>
     <task id="LOCAL-00001" summary="fix ship collider and bluster shot">
       <option name="closed" value="true" />
@@ -338,7 +340,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705830399431</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="update open graph">
+      <option name="closed" value="true" />
+      <created>1705837095587</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1705837095587</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -374,7 +384,8 @@
     <MESSAGE value="add background" />
     <MESSAGE value="add background, fix request order" />
     <MESSAGE value="add aave errors" />
-    <option name="LAST_COMMIT_MESSAGE" value="add aave errors" />
+    <MESSAGE value="update open graph" />
+    <option name="LAST_COMMIT_MESSAGE" value="update open graph" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
