@@ -18,6 +18,7 @@ type Game = {
   asteroids: (TokenData & { id: number })[];
   user: UserData | null;
 
+  setUser: (user: UserData) => void;
   init: (signer: Signer) => Promise<void>;
   onHit: (
     signer: Signer,
@@ -124,21 +125,17 @@ export const useGame = create<Game>()((set, get) => ({
     } catch (error) {
       useModal.getState().setError(error as TransactionError);
     }
+  },
 
-    setTimeout(async () => {
-      try {
-        const user = await Users.getUser();
+  setUser: (user) => {
+    if (user.healthFactor < gameOverHealthFactor) {
+      useModal.getState().setError(Error("Game over"));
+    }
 
-        if (user.healthFactor < gameOverHealthFactor) throw Error("Game over");
-
-        set((state) => ({
-          ...state,
-          user,
-        }));
-      } catch (error) {
-        useModal.getState().setError(error as Error);
-      }
-    }, 5000);
+    set((state) => ({
+      ...state,
+      user,
+    }));
   },
 
   setBulletColor: (color) => {

@@ -13,6 +13,7 @@ import {
   gameOverHealthFactor,
   minBalanceForGame,
 } from "../shared/constants/constants";
+import { useUserData } from "../shared/hooks/useUserData";
 import { useGame } from "../shared/services/game/game.service";
 import { useModal } from "../shared/services/modal";
 import { Avatar } from "./Avatar";
@@ -49,8 +50,8 @@ export const GuiOverlay: FC<GuiProps> = ({ map, className }) => {
     borrowRepayPercentage,
     incBRP,
     decBRP,
-    user,
   } = useGame();
+  const { user } = useUserData();
 
   const isReadyForGame = +(data?.displayValue || "0") >= minBalanceForGame;
 
