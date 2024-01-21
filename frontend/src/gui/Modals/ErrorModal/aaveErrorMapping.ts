@@ -89,7 +89,7 @@ export const STABLE_BORROWING_ENABLED = "88"; // 'Stable borrowing is enabled'
 export const SILOED_BORROWING_VIOLATION = "89"; // 'User is trying to borrow multiple assets includinga siloed one'
 export const RESERVE_DEBT_NOT_ZERO = "90"; // the total debt of the reserve needs to be 0
 
-export const aaveErrorMessages: Record<number, string> = {
+export const aaveErrorMessages: Record<string, string> = {
   [CALLER_NOT_POOL_ADMIN]: "The caller of the function is not a pool admin",
   [CALLER_NOT_EMERGENCY_ADMIN]: "The caller of the function is not an emergency admin",
   [CALLER_NOT_POOL_OR_EMERGENCY_ADMIN]:

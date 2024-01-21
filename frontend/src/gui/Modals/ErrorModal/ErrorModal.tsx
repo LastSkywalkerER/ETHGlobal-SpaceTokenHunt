@@ -13,6 +13,15 @@ const ErrorModal: React.FC<ModalProps> = ({ error, onClose }) => {
   };
 
   const getErrorText = () => {
+    const aaveCode =
+      error.reason &&
+      error.reason.includes("execution reverted: ") &&
+      error.reason.replace("execution reverted: ", "");
+
+    if (aaveCode && aaveErrorMessages[aaveCode]) {
+      return aaveErrorMessages[aaveCode];
+    }
+
     if (error.reason) {
       return capitalizeFirstLetter(error.reason);
     }
@@ -45,14 +54,6 @@ const ErrorModal: React.FC<ModalProps> = ({ error, onClose }) => {
             ))}
         </>
       );
-    }
-
-    const aaveCode =
-      "Execution reverted: 36".includes("Execution reverted: ") &&
-      parseInt("Execution reverted: 36".replace("Execution reverted: ", ""));
-
-    if (aaveCode) {
-      return aaveErrorMessages[aaveCode];
     }
 
     return capitalizeFirstLetter(error.message || "Something went wrong");
