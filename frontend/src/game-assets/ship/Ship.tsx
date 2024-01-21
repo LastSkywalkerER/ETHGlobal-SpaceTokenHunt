@@ -116,12 +116,13 @@ export const Ship: FC<GroupProps & ShipProps> = ({
   if (!specs) return null;
 
   return (
-    <group {...props} ref={group} position={specs.CURRENT_POSITION}>
+    <group {...props} ref={group}>
       <CameraControls ref={controls} />
 
       <RigidBody
         ref={rigidbody}
         mass={specs.SHIP_MASS}
+        position={specs.CURRENT_POSITION}
         enabledTranslations={[true, false, true]}
         enabledRotations={[false, true, false]}
         linearDamping={specs.LINEAR_DAMPING}

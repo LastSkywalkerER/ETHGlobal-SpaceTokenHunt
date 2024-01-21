@@ -50,3 +50,9 @@ export const bulletNameToAction: Record<
   [BulletActions.Withdraw]: withdraw,
   [BulletActions.Supply]: supply,
 };
+
+export const amountFieldToAction = {
+  [BulletActions.Borrow]: "avaliable",
+  [BulletActions.Repay]: "debt",
+  [BulletActions.Withdraw]: "balance",
+};

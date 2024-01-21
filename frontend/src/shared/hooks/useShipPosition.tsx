@@ -25,6 +25,8 @@ export const useShipPosition = () => {
     return () => {
       shipSocket.current?.off("connect");
       shipSocket.current?.off("disconnect");
+
+      shipSocket.current?.disconnect();
     };
   }, [user]);
 

@@ -18,8 +18,8 @@ export type TableData = Record<TableConfig["accessor"], DataType>;
 export const Table: FC<{ config: TableConfig[]; data: TableData[] }> = ({ config, data }) => {
   return (
     <div className="relative overflow-x-auto">
-      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <table className="w-full text-sm text-left rtl:text-right text-gray-400">
+        <thead className="text-xs uppercase bg-gray-700 text-gray-400">
           <tr>
             {config.map(({ accessor, header }) => (
               <th key={accessor} scope="col" className="px-6 py-3">
@@ -31,7 +31,7 @@ export const Table: FC<{ config: TableConfig[]; data: TableData[] }> = ({ config
         <tbody>
           {data.map((rowData, index) => {
             return (
-              <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <tr key={index} className="border-b bg-gray-800 border-gray-700">
                 {config.map(({ accessor, cell }) => {
                   return (
                     <td key={`${accessor}-${index}`} className="px-6 py-4">
