@@ -63,7 +63,6 @@ export class ShipDomain {
         userId: userUuid,
       },
     });
-    console.log({ data });
 
     return data;
   }

@@ -35,30 +35,58 @@ export class BlockchainEthSdk {
   }
 
   private async subscribeToExistingContracts() {
-    const sdk = new ThirdwebSDK('sepolia');
-    const contract = await sdk.getContract(this.contractAddress, this.abi);
+    try {
+      const sdk = new ThirdwebSDK('sepolia');
+      const contract = await sdk.getContract(this.contractAddress, this.abi);
 
-    contract.events.listenToAllEvents(async (event) => {
-      this.eventEmitter.emit('Update', event);
-    });
+      contract.events.listenToAllEvents(async (event) => {
+        this.eventEmitter.emit('Update', event);
+      });
+    } catch {
+      // thirdweb event subscription is best-effort (no API key / flaky RPC);
+      // never let it crash the server on startup.
+    }
+  }
+
+  // Retry transient RPC failures ("could not detect network", rate limits, …)
+  // a couple of times before giving up — the public Sepolia node is flaky.
+  private async withRetry<T>(fn: () => Promise<T>, retries = 2): Promise<T> {
+    let lastError: unknown;
+    for (let attempt = 0; attempt <= retries; attempt++) {
+      try {
+        return await fn();
+      } catch (error) {
+        lastError = error;
+        if (attempt < retries) {
+          await new Promise((resolve) => setTimeout(resolve, 400 * (attempt + 1)));
+        }
+      }
+    }
+    throw lastError;
   }
 
   public async getTokensInfo() {
-    const poolDataProviderContract = new UiPoolDataProvider({
-      uiPoolDataProviderAddress: '0x69529987FA4A075D0C00B0128fa848dc9ebbE9CE',
-      provider: this.provider,
-      chainId: ChainId.sepolia,
-    });
+    return this.withRetry(async () => {
+      const poolDataProviderContract = new UiPoolDataProvider({
+        uiPoolDataProviderAddress:
+          '0x69529987FA4A075D0C00B0128fa848dc9ebbE9CE',
+        provider: this.provider,
+        chainId: ChainId.sepolia,
+      });
 
-    const reserves = await poolDataProviderContract.getReservesHumanized({
-      lendingPoolAddressProvider: '0x012bAC54348C0E635dCAc9D5FB99f06F24136C9A',
-    });
+      const reserves = await poolDataProviderContract.getReservesHumanized({
+        lendingPoolAddressProvider:
+          '0x012bAC54348C0E635dCAc9D5FB99f06F24136C9A',
+      });
 
-    return reserves.reservesData;
+      return reserves.reservesData;
+    });
   }
 
   public async getBlockchainData(address: string) {
-    const data = await this.contract['getUserAccountData(address)'](address);
+    const data = await this.withRetry<any>(() =>
+      this.contract['getUserAccountData(address)'](address),
+    );
 
     const netWorth =
       Number(ethers.utils.formatUnits(data.totalCollateralBase, 8)) -

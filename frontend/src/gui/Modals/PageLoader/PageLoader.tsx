@@ -1,14 +1,15 @@
 import React from "react";
 
-import { GuiCard } from "../../GuiCard";
-
 export const PageLoader: React.FC = () => {
   return (
-    <div className="z-50 fixed top-0 left-0 flex justify-center items-center w-full h-full">
-      <div className="absolute bg-black opacity-70 top-0 left-0 w-full h-full" />
-      <GuiCard className="w-[420px] bg-whitelabel-main-800 rounded-large py-64 px-40 flex flex-col items-center justify-center mx-20 z-10">
-        Loading...
-      </GuiCard>
+    <div className="fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center">
+      <div className="absolute left-0 top-0 h-full w-full bg-space-950/80 backdrop-blur-sm" />
+      <div className="glass z-10 mx-5 flex w-[360px] flex-col items-center justify-center gap-6 px-10 py-14 animate-fade-in">
+        <div className="h-12 w-12 rounded-full border-2 border-white/10 border-t-neon-cyan animate-spin-slow" />
+        <span className="font-display text-sm uppercase tracking-[0.25em] text-white/70">
+          Loading
+        </span>
+      </div>
     </div>
   );
 };

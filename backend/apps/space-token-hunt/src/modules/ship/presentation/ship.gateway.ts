@@ -1,3 +1,4 @@
+import { Logger } from '@nestjs/common';
 import {
   ConnectedSocket,
   MessageBody,
@@ -12,6 +13,7 @@ import { ShipDomain } from '../domain';
 
 @WebSocketGateway({ namespace: '/ship' })
 export class ShipGateway {
+  private readonly logger = new Logger(ShipGateway.name);
   private readonly connectedMap = new Map<string, Socket>();
   constructor(
     private readonly shipDomain: ShipDomain,
@@ -23,36 +25,68 @@ export class ShipGateway {
 
   async handleConnection(client: Socket) {
     const { userUuid } = client.handshake.query;
-    this.connectedMap.set(userUuid as string, client);
-    const position = await this.shipDomain.getCurrentUserShipPosition({
-      userUuid: userUuid as string,
-    });
-    if (userUuid && !position) {
-      await this.shipDomain.createShipPosition({
-        userId: userUuid as string,
-        x: 0,
-        y: 0,
-        z: 0,
+    if (!userUuid) {
+      return;
+    }
+    try {
+      this.connectedMap.set(userUuid as string, client);
+      const position = await this.shipDomain.getCurrentUserShipPosition({
+        userUuid: userUuid as string,
       });
+      if (!position) {
+        await this.shipDomain.createShipPosition({
+          userId: userUuid as string,
+          x: 0,
+          y: 0,
+          z: 0,
+        });
+      }
+    } catch (error) {
+      this.logger.error(
+        `handleConnection failed for ${userUuid}: ${error?.message}`,
+      );
     }
   }
 
   async handleDisconnect(client: Socket) {
     const { userUuid } = client.handshake.query;
+    if (!userUuid) {
+      return;
+    }
     this.connectedMap.delete(userUuid as string);
-    const { x, y, z } = await this.shipDomain.getTemporaryShipPosition({
-      userId: userUuid as string,
-    });
-    await this.shipDomain.updateShipPosition({
-      userId: userUuid as string,
-      x,
-      y,
-      z,
-    });
-    await this.ratingService.createRatingRecord({ userId: userUuid as string });
-    await this.shipDomain.deleteTemporaryShipPosition({
-      userId: userUuid as string,
-    });
+    try {
+      const position = await this.shipDomain.getTemporaryShipPosition({
+        userId: userUuid as string,
+      });
+
+      // Persist the last known position only when we actually have one.
+      // On a fresh connect/disconnect there may be no temporary position yet,
+      // and writing null coordinates violates the NOT NULL constraint.
+      if (
+        position &&
+        position.x != null &&
+        position.y != null &&
+        position.z != null
+      ) {
+        await this.shipDomain.updateShipPosition({
+          userId: userUuid as string,
+          x: position.x,
+          y: position.y,
+          z: position.z,
+        });
+      }
+
+      await this.ratingService.createRatingRecord({
+        userId: userUuid as string,
+      });
+      await this.shipDomain.deleteTemporaryShipPosition({
+        userId: userUuid as string,
+      });
+    } catch (error) {
+      this.logger.error(
+        `handleDisconnect failed for ${userUuid}: ${error?.message}`,
+      );
+    }
   }
 
   @SubscribeMessage('shipPosition')
@@ -61,15 +95,24 @@ export class ShipGateway {
     @ConnectedSocket() client: Socket,
   ) {
     const { userUuid } = client.handshake.query;
+    if (!userUuid || !position) {
+      return;
+    }
 
-    await this.shipDomain.deleteTemporaryShipPosition({
-      userId: userUuid as string,
-    });
-    await this.shipDomain.createTemporaryShipPosition({
-      userId: userUuid as string,
-      x: position.x,
-      y: position.y,
-      z: position.z,
-    });
+    try {
+      await this.shipDomain.deleteTemporaryShipPosition({
+        userId: userUuid as string,
+      });
+      await this.shipDomain.createTemporaryShipPosition({
+        userId: userUuid as string,
+        x: position.x,
+        y: position.y,
+        z: position.z,
+      });
+    } catch (error) {
+      this.logger.error(
+        `handleShipPosition failed for ${userUuid}: ${error?.message}`,
+      );
+    }
   }
 }

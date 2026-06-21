@@ -44,11 +44,13 @@ export const RatingBoard: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
   }, []);
 
   return (
-    <GuiCard
-      {...props}
-      className={cx("overflow-auto max-h-[500px] max-w-[400px]", props.className)}
-    >
-      <Table config={config} data={ratingData} />
+    <GuiCard {...props} className={cx("w-[min(92vw,460px)] p-0", props.className)}>
+      <div className="border-b border-white/10 px-5 py-3">
+        <h2 className="hud-title">Rating board</h2>
+      </div>
+      <div className="max-h-[60vh] overflow-auto px-2 pb-2">
+        <Table config={config} data={ratingData} />
+      </div>
     </GuiCard>
   );
 };

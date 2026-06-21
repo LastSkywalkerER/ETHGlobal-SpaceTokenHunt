@@ -44,8 +44,8 @@ const config: TableConfig[] = [
   },
   {
     accessor: "name",
-    cell: ({ data }) => data as ReactNode,
-    header: "name",
+    cell: ({ data }) => <span className="font-semibold text-white">{data as ReactNode}</span>,
+    header: "Name",
   },
   {
     accessor: "walletBalance",
@@ -88,11 +88,13 @@ export const Balances: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
   }, []);
 
   return (
-    <GuiCard
-      {...props}
-      className={cx("overflow-auto max-h-[500px] max-w-[400px]", props.className)}
-    >
-      <Table config={config} data={tokens} />
+    <GuiCard {...props} className={cx("w-[min(92vw,560px)] p-0", props.className)}>
+      <div className="border-b border-white/10 px-5 py-3">
+        <h2 className="hud-title">Your assets</h2>
+      </div>
+      <div className="max-h-[60vh] overflow-auto px-2 pb-2">
+        <Table config={config} data={tokens} />
+      </div>
     </GuiCard>
   );
 };

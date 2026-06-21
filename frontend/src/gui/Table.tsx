@@ -17,33 +17,45 @@ export type TableData = Record<TableConfig["accessor"], DataType>;
 
 export const Table: FC<{ config: TableConfig[]; data: TableData[] }> = ({ config, data }) => {
   return (
-    <div className="relative overflow-x-auto">
-      <table className="w-full text-sm text-left rtl:text-right text-gray-400">
-        <thead className="text-xs uppercase bg-gray-700 text-gray-400">
+    <table className="w-full border-separate border-spacing-0 text-left text-sm">
+      <thead>
+        <tr>
+          {config.map(({ accessor, header }) => (
+            <th
+              key={accessor}
+              scope="col"
+              className="sticky top-0 z-10 whitespace-nowrap bg-space-800/90 px-4 py-3 font-display text-[11px] font-semibold uppercase tracking-wider text-neon-cyan/80 backdrop-blur-md first:rounded-tl-lg last:rounded-tr-lg"
+            >
+              {header}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {data.length === 0 && (
           <tr>
-            {config.map(({ accessor, header }) => (
-              <th key={accessor} scope="col" className="px-6 py-3">
-                {header}
-              </th>
-            ))}
+            <td colSpan={config.length} className="px-4 py-8 text-center text-sm text-white/40">
+              No data yet
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          {data.map((rowData, index) => {
-            return (
-              <tr key={index} className="border-b bg-gray-800 border-gray-700">
-                {config.map(({ accessor, cell }) => {
-                  return (
-                    <td key={`${accessor}-${index}`} className="px-6 py-4">
-                      {cell({ data: rowData[accessor], row: rowData, index, accessor })}
-                    </td>
-                  );
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
+        )}
+        {data.map((rowData, index) => {
+          return (
+            <tr key={index} className="group transition-colors hover:bg-white/[0.04]">
+              {config.map(({ accessor, cell }) => {
+                return (
+                  <td
+                    key={`${accessor}-${index}`}
+                    className="whitespace-nowrap border-b border-white/5 px-4 py-3 align-middle text-white/85"
+                  >
+                    {cell({ data: rowData[accessor], row: rowData, index, accessor })}
+                  </td>
+                );
+              })}
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
   );
 };

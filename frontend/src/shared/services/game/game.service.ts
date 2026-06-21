@@ -123,6 +123,11 @@ export const useGame = create<Game>()((set, get) => ({
         asteroids: state.asteroids.filter(({ id }) => id !== etherId),
       }));
     } catch (error) {
+      // Tag the error with the action that failed so the modal can show
+      // operation-specific guidance (supply / borrow / repay / withdraw).
+      if (error && typeof error === "object") {
+        (error as { gameAction?: string }).gameAction = action;
+      }
       useModal.getState().setError(error as TransactionError);
     }
   },
@@ -132,9 +137,11 @@ export const useGame = create<Game>()((set, get) => ({
       useModal.getState().setError(Error("Game over"));
     }
 
+    // Socket "update" events only carry the live metrics (healthFactor, netWorth, …)
+    // and omit static fields like `address`. Merge so we never lose them.
     set((state) => ({
       ...state,
-      user,
+      user: state.user ? { ...state.user, ...user } : user,
     }));
   },
 

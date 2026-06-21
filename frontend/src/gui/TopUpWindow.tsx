@@ -119,9 +119,10 @@ export const TopUpWindow: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
       cell: ({ row }) => (
         <input
           className={
-            "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 max-w-[100px]"
+            "block w-[110px] rounded-lg border border-white/15 bg-space-900/80 p-2.5 text-sm text-white placeholder-white/30 outline-none transition-colors focus:border-neon-cyan/60 focus:ring-1 focus:ring-neon-cyan/40"
           }
           type={"number"}
+          placeholder={"0.0"}
           {...register(String(row["address"]))}
         />
       ),
@@ -137,15 +138,22 @@ export const TopUpWindow: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
     {
       accessor: "withdraw",
       cell: ({ row }) => (
-        <GuiButton onClick={() => withdraw(String(row["address"]))}>Withdraw</GuiButton>
+        <GuiButton variant="secondary" onClick={() => withdraw(String(row["address"]))}>
+          Withdraw
+        </GuiButton>
       ),
       header: "",
     },
   ];
 
   return (
-    <GuiCard {...props} className={cx("overflow-y-auto max-h-[500px]", props.className)}>
-      <Table config={config} data={removeDuplicates<TableData, string>(tokens, "address")} />
+    <GuiCard {...props} className={cx("w-[min(94vw,640px)] p-0", props.className)}>
+      <div className="border-b border-white/10 px-5 py-3">
+        <h2 className="hud-title">Top up / withdraw</h2>
+      </div>
+      <div className="max-h-[60vh] overflow-auto px-2 pb-2">
+        <Table config={config} data={removeDuplicates<TableData, string>(tokens, "address")} />
+      </div>
     </GuiCard>
   );
 };

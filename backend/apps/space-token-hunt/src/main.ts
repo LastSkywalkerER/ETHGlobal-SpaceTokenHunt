@@ -12,6 +12,17 @@ import { Config } from './config';
 
 async function bootstrap() {
   const logger = new Logger();
+
+  // Safety net: a transient Sepolia RPC failure surfaces as an unhandled
+  // rejection from ethers' batch provider (outside any try/catch) and would
+  // otherwise crash the whole server. Log and keep running instead.
+  process.on('unhandledRejection', (reason) => {
+    new Logger('UnhandledRejection').error(reason);
+  });
+  process.on('uncaughtException', (error) => {
+    new Logger('UncaughtException').error(error);
+  });
+
   const app = await NestFactory.create(AppModule);
   app.enableCors({
     origin: ['http://localhost:3000', 'https://space-token-hunt.vercel.app'],

@@ -1,76 +1,35 @@
 import React from "react";
 
 import { GuiButton } from "../../GuiButton";
-import { GuiCard } from "../../GuiCard";
-import { aaveErrorMessages } from "./aaveErrorMapping";
+import { resolveFriendlyError } from "./friendlyErrors";
 import { ModalProps } from "./types";
 
 const ErrorModal: React.FC<ModalProps> = ({ error, onClose }) => {
-  const capitalizeFirstLetter = (string: string | string[]) => {
-    const newString = Array.isArray(string) ? string.join(", ") : string;
-
-    return newString.charAt(0).toUpperCase() + newString.slice(1);
-  };
-
-  const getErrorText = () => {
-    const aaveCode =
-      error.reason &&
-      error.reason.includes("execution reverted: ") &&
-      error.reason.replace("execution reverted: ", "");
-
-    if (aaveCode && aaveErrorMessages[aaveCode]) {
-      return aaveErrorMessages[aaveCode];
-    }
-
-    if (error.reason) {
-      return capitalizeFirstLetter(error.reason);
-    }
-
-    if (error.message && error.message.includes(`Cause: {"code":-`)) {
-      return error.message.slice(
-        error.message.indexOf(`"message":"`) + 11,
-        error.message.indexOf(`","stack":"`),
-      );
-    }
-
-    if (error.message && error.message.indexOf(`TRANSACTION INFORMATION`) !== -1) {
-      return (
-        <>
-          Something went wrong.
-          <br />
-          <br />
-          {error.message
-            .slice(
-              error.message.indexOf(`TRANSACTION INFORMATION`) + 54,
-              error.message.indexOf(`DEBUGGING RESOURCES`) - 28,
-            )
-
-            .split("<br />")
-            .map((string: string) => (
-              <>
-                {string}
-                <br />
-              </>
-            ))}
-        </>
-      );
-    }
-
-    return capitalizeFirstLetter(error.message || "Something went wrong");
-  };
+  const { title, message, hint } = resolveFriendlyError(error);
 
   return (
-    <div className="z-50 fixed top-0 left-0 flex justify-center items-center w-full h-full">
-      <div className="absolute bg-black opacity-70 top-0 left-0 w-full h-full" />
-      <GuiCard className="z-50 w-[500px] min-h-[300px] flex flex-col items-center justify-between bg-whitelabel-main-800 rounded-large animate-fade-in p-40 mx-20">
-        <div className="text-p1 w-full text-vitreus-luminous-green text-center overflow-hidden relative inline-block text-ellipsis nowrap">
-          {getErrorText()}
+    <div className="fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center">
+      <div className="absolute left-0 top-0 h-full w-full bg-space-950/80 backdrop-blur-sm" />
+      <div className="glass z-10 mx-5 flex w-[500px] max-w-[92vw] flex-col items-center px-10 py-10 animate-fade-in">
+        <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full border border-neon-red/40 bg-neon-red/10 text-2xl text-neon-red shadow-[0_0_24px_-4px_rgba(255,77,109,0.6)]">
+          !
         </div>
+        <span className="mb-3 text-center font-display text-lg font-bold text-white">{title}</span>
+        <p className="max-h-[30vh] w-full overflow-auto break-words text-center text-sm text-white/70">
+          {message}
+        </p>
 
-        <GuiButton className="w-1/2 mt-20" onClick={onClose}>
+        {hint && (
+          <div className="mt-5 w-full rounded-lg border border-neon-cyan/25 bg-neon-cyan/5 px-4 py-3 text-center text-sm text-neon-cyan/90">
+            <span className="font-semibold">💡 How to fix: </span>
+            {hint}
+          </div>
+        )}
+
+        <GuiButton className="mt-8 w-1/2" onClick={onClose}>
           Got it
         </GuiButton>
-      </GuiCard>
+      </div>
     </div>
   );
 };

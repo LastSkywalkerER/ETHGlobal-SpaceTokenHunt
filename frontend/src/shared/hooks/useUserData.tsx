@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { io, Socket } from "socket.io-client";
 
+import { normalizeUser } from "../api/Users";
 import { baseURL } from "../constants/constants";
 import { useGame } from "../services/game/game.service";
 
@@ -21,7 +22,10 @@ export const useUserData = () => {
 
     userSocket.current.on("connect", console.log);
     userSocket.current.on("disconnect", console.log);
-    userSocket.current.on("update", (data) => data && setUser(data));
+    // Backend emits the "Update" event (capital U) with `walletAddress`.
+    const onUpdate = (data: unknown) => data && setUser(normalizeUser(data as never));
+    userSocket.current.on("Update", onUpdate);
+    userSocket.current.on("update", onUpdate);
 
     return () => {
       userSocket.current?.off("connect");

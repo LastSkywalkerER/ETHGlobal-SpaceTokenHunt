@@ -37,9 +37,12 @@ export class TokenService {
 
   public async getTokens({ userId }: GetTokensParameters) {
     const tokensData = await this.tokenDomain.getTokens();
-    const shipPosition = await this.shipDomain.getTemporaryShipPosition({
-      userId,
-    });
+
+    // Spawn the tokens around the ship. Prefer the live (Redis) position; if the
+    // player just started a session it's empty, so fall back to the persisted
+    // ship position from the DB — otherwise tokens cluster at {0,0,0} while the
+    // ship is restored somewhere far away and appear "missing".
+    const shipPosition = await this.getShipSpawnPosition(userId);
 
     const tokens = [];
 
@@ -50,12 +53,38 @@ export class TokenService {
 
     const data = tokens.map((token) => ({
       ...token,
-      position: this.createCoordinateAroundShip({
-        shipPosition: shipPosition ? shipPosition : { x: 0, y: 0, z: 0 },
-      }),
+      position: this.createCoordinateAroundShip({ shipPosition }),
     }));
 
     return data;
+  }
+
+  private async getShipSpawnPosition(
+    userId: string,
+  ): Promise<{ x: number; y: number; z: number }> {
+    const temporaryPosition = await this.shipDomain.getTemporaryShipPosition({
+      userId,
+    });
+    if (temporaryPosition) {
+      return {
+        x: Number(temporaryPosition.x),
+        y: Number(temporaryPosition.y),
+        z: Number(temporaryPosition.z),
+      };
+    }
+
+    const savedPosition = await this.shipDomain.getCurrentUserShipPosition({
+      userUuid: userId,
+    });
+    if (savedPosition) {
+      return {
+        x: Number(savedPosition.x),
+        y: Number(savedPosition.y),
+        z: Number(savedPosition.z),
+      };
+    }
+
+    return { x: 0, y: 0, z: 0 };
   }
 
   public async getTokensInfo({ userId }: GetTokensParameters) {

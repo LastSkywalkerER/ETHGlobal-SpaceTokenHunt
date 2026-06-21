@@ -4,9 +4,17 @@ export interface UserData {
   id: number;
   uuid: string;
   address: string;
+  /** Backend returns the wallet under `walletAddress`; we normalise it to `address`. */
+  walletAddress?: string;
   healthFactor: number;
   netWorth: number;
 }
+
+/** The backend uses `walletAddress`; the rest of the app expects `address`. */
+export const normalizeUser = <T extends Partial<UserData>>(user: T): T => ({
+  ...user,
+  address: user.address ?? user.walletAddress,
+});
 
 export class Users {
   public static async authLogin(address: string) {
@@ -36,7 +44,7 @@ export class Users {
   public static async getUser() {
     const response = await axios.get<UserData>("/api/v1/user");
 
-    return response.data;
+    return normalizeUser(response.data);
   }
 
   public static async ratingBoard() {
