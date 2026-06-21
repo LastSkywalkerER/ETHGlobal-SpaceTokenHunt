@@ -25,7 +25,12 @@ async function bootstrap() {
 
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-    origin: ['http://localhost:3000', 'https://space-token-hunt.vercel.app'],
+    origin: [
+      'http://localhost:3000',
+      'https://space-token-hunt.vercel.app',
+      'http://spacetokenhunt.blockchain-core-group.com',
+      'https://spacetokenhunt.blockchain-core-group.com',
+    ],
     methods: ['POST', 'GET', 'PUT', 'DELETE'],
     credentials: true,
   });
@@ -40,9 +45,10 @@ async function bootstrap() {
   );
   const configService = app.get<ConfigService<Config>>(ConfigService);
   const { port } = configService.get<Config['application']>('application');
+  const host = process.env.HOST ?? '0.0.0.0';
 
-  await app.listen(port);
-  logger.log(`SpaceTokenHunt service is running on ${await app.getUrl()}`);
+  await app.listen(port, host);
+  logger.log(`SpaceTokenHunt service is running on http://${host}:${port}`);
 }
 
 bootstrap();
